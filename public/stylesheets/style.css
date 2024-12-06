@@ -1,0 +1,198 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+ul,h3{
+    margin: 0px;
+}
+
+/* instuction screen container */
+header{
+    z-index: 100;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #d4e8dede;
+    cursor: pointer;
+}
+
+/* manual instruction screen */
+.landing_page{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.instruction_screen{
+    border-radius: 370px;
+    background-color: #FAAF90;
+    padding: 5vw 5vh;
+    max-width: 50%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.brand_name{
+    font-family: "Oleo Script Swash Caps", "Molle", system-ui;
+    margin: 0;
+    text-align: center;
+}
+.instruction_screen hr{
+    border-bottom: black solid 2px;
+    width: 70%;
+}
+.instructions{
+    font-family: "Rethink Sans", serif;
+    width: 80%;
+    text-align: center;
+}
+
+/* main body content */
+main{
+    height: 100vh;
+    width: 100vw;
+}
+
+/* main's header */
+.brand_header{
+    width: 100vw;
+    height: 10vh;
+    background-color: #D4E8DE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.brand_header p{
+    text-align: center;
+    font-family: "Rethink Sans", serif;
+    margin: 0px;
+}
+.header_brand{
+    opacity: 0%;
+}
+
+/* main content */
+.plant_container{
+    height: 90vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('https://res.cloudinary.com/doqunjdxq/image/upload/v1733427831/stem_ociaqs.svg')
+}
+
+/* fixed elements */
+.expand_lightbulb, .sort_by_stages, .plant_icon{
+    position: fixed;
+    top: 10vh;
+    padding: 2%;
+    margin: 1%;
+    background-color: #FDF1ED;
+}
+
+.positive_contributions, .add_post_icon, .left_sidebar_label{
+    position: fixed;
+    top: 10vh;
+}
+.why_plant, .plant_image{
+    padding: 5%;
+    margin: 5%;
+    background-color: #FDF1ED;
+}
+
+/* Left sidebar */
+.why_header{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.why_plant{
+    display: none;
+    font-family: "Rethink Sans", serif;
+    z-index: 2;
+    max-width: 45vw;
+    line-height: 150%;
+    border-radius: 27px;
+}
+.plant_image{
+    display: none;
+    margin-top: 0px;
+    border-radius: 37px;
+}
+.minimize_icon, .expand_lightbulb{
+    cursor: pointer;
+}
+.expand_lightbulb{
+    padding: 1%;
+    top: 11vh;
+    border-radius: 90px;
+    z-index: 1;
+    background-image: url('https://www.svgrepo.com/show/472703/lightbulb.svg');
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.plant_icon{
+    cursor: pointer;
+    top: 27vh;
+    border-radius: 50px;
+}
+
+/* Right sortby */
+.sort_by_stages{
+    font-family: "Rethink Sans", serif;
+    right: 4vw;
+    background-color: white;
+    margin: 0px;
+    padding: 0px;
+}
+.category{
+    user-select: none;
+    width: 100%;
+    padding: 5% 10%;
+    margin-top: 20%;
+    background-color: #FAAF90;
+    text-align: center;
+    border-radius: 37px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.add_post_icon{
+    top: 80vh;
+    right: 2vw;
+    bottom: 0;
+    z-index: 1;
+    background-image: url('https://www.svgrepo.com/show/491975/water-fee.svg');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.add_post_icon:hover{
+    transform: scale(105%);
+}
+
+/* plant entry */
+.plant_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.plant_entry{
+    border-radius: 100px;
+    background-color: #D4E8DE;
+    padding: 2% 5%;
+}
+
+/* img:hover{
+    filter: brightness(0) saturate(100%) invert(68%) sepia(12%) saturate(1471%) hue-rotate(185deg) brightness(96%) contrast(96%);
+} */
+
+/* keyframe animations */
+@keyframes appear{
+    from{}
+    to{opacity: 100%}
+}

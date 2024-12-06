@@ -6,7 +6,7 @@
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Judy Zhang.
 
 ## **Features**
 

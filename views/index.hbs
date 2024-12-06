@@ -1,0 +1,71 @@
+<header>
+    <div class="landing_page">
+        <div class="instruction_screen">
+            <h1 class="brand_name">PlanTry</h1>
+            <hr/>
+            <p class="instructions">Water the digital plant with your planting entry and help it grow by interacting with it.</p>
+        </div>
+        <small>Press anywhere to continue</small>
+    </div>
+</header>
+<main>
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="expand_lightbulb" width="100px">
+    <path id="circlePath" fill="none" stroke-width="0" stroke="hsl(0 100% 50% / 0.5)" d="
+        M 15, 50
+        a 35,35 0 1,1 70,0
+        35,35 0 1,1 -70,0
+        " />
+    <text id="text" font-family="Rethink" font-size="22" font-weight="normal" fill="var(--text-1)">
+    <textPath id="textPath" href="#circlePath">Why Plant?</textPath>
+    </text>
+    </svg>
+    {{!-- <img class="expand_lightbulb" src="https://www.svgrepo.com/show/472703/lightbulb.svg" width="100px" alt="lightbulb icon"> --}}
+    <img class="plant_icon" src="https://www.svgrepo.com/show/286087/plant.svg" width="50px" alt="plant icon">
+    <div class="positive_contributions">
+        <div class="why_plant">
+            <div class="why_header">
+                <h3>Pros to Planting:</h3>
+                <img class="minimize_icon" src="https://www.svgrepo.com/show/469276/minimize-left.svg" width="30px" alt="minimize area">
+            </div>
+            <ul>
+                <li>Health: Greener is Cleaner</li>
+                <li>Beauty: Brighten Your Community's Environment</li>
+                <li>Value: Increase Property Value</li>
+                <li>Efficiency: Reduce Energy Consumption for Cooling and Heating</li>
+            </ul>
+        </div>
+        <img class="plant_image" src="https://images.unsplash.com/photo-1621460245547-8265f5ba30d9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="150px" alt="planting imagery">
+    </div>
+    <div class="sort_by_stages">
+        <div class="category">Sprouting</div>
+        <div class="category">Seedling</div>
+        <div class="category">Mature</div>
+        <div class="category">Flowering</div>
+        <div class="category">Fruit</div>
+    </div>
+
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="add_post_icon" width="150px">
+    <path id="circlePath" fill="none" stroke-width="0" stroke="hsl(0 100% 50% / 0.5)" d="
+          M 14, 50
+          a 36,36 0 1,1 72,0
+          a 36,36 0 1,1 -72,0
+        " />
+    <text id="text" font-family="Oleo Script Swash Caps" font-size="17" font-weight="normal" fill="var(--text-1)">
+    {{!-- <text id="text" font-family="Rethink Sans" font-size="16" font-weight="bold" fill="var(--text-1)"> --}}
+      <textPath id="textPath" href="#circlePath">Add Plant Entry</textPath>
+    </text>
+    </svg>
+    
+    <div class="brand_header">
+        <h1 class="brand_name header_brand">PlanTry</h1>
+        <p class="header_brand">Have a plant? Share it!</p>
+    </div>    
+    <div class="plant_container">
+        {{#each entries}}
+            <div class="plant_entry" id="{{this.id}}">
+                <h3 class="plantName">{{this.name}}</h3>
+                {{!-- <p class="plantEntry">{{this.entry}}</p> --}}
+            </div>
+        {{/each}}
+    </div>
+</main>
