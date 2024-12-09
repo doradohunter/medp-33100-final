@@ -5,7 +5,7 @@
             <hr/>
             <p class="instructions">Water the digital plant with your planting entry and help it grow by interacting with it.</p>
         </div>
-        <small>Press anywhere to continue</small>
+        <small id="instruction">Press anywhere to continue</small>
     </div>
 </header>
 <main>
@@ -19,7 +19,6 @@
     <textPath id="textPath" href="#circlePath">Why Plant?</textPath>
     </text>
     </svg>
-    {{!-- <img class="expand_lightbulb" src="https://www.svgrepo.com/show/472703/lightbulb.svg" width="100px" alt="lightbulb icon"> --}}
     <img class="plant_icon" src="https://www.svgrepo.com/show/286087/plant.svg" width="50px" alt="plant icon">
     <div class="positive_contributions">
         <div class="why_plant">
@@ -37,11 +36,9 @@
         <img class="plant_image" src="https://images.unsplash.com/photo-1621460245547-8265f5ba30d9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="150px" alt="planting imagery">
     </div>
     <div class="sort_by_stages">
-        <div class="category">Sprouting</div>
-        <div class="category">Seedling</div>
-        <div class="category">Mature</div>
-        <div class="category">Flowering</div>
-        <div class="category">Fruit</div>
+        {{#each stages}}
+            <div class="category" id="{{this._id}}">{{this.name}}</div>
+        {{/each}}
     </div>
 
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="add_post_icon" width="150px">
@@ -50,9 +47,9 @@
           a 36,36 0 1,1 72,0
           a 36,36 0 1,1 -72,0
         " />
-    <text id="text" font-family="Oleo Script Swash Caps" font-size="17" font-weight="normal" fill="var(--text-1)">
-    {{!-- <text id="text" font-family="Rethink Sans" font-size="16" font-weight="bold" fill="var(--text-1)"> --}}
-      <textPath id="textPath" href="#circlePath">Add Plant Entry</textPath>
+    {{!-- <text id="text" font-family="Oleo Script Swash Caps" font-size="17" font-weight="normal" fill="var(--text-1)"> --}}
+    <text id="text" font-family="Rethink Sans" font-size="18" font-weight="normal" fill="var(--text-1)">
+      <textPath id="textPath" href="#circlePath">Add an Entry!</textPath>
     </text>
     </svg>
     
@@ -60,12 +57,100 @@
         <h1 class="brand_name header_brand">PlanTry</h1>
         <p class="header_brand">Have a plant? Share it!</p>
     </div>    
+
     <div class="plant_container">
-        {{#each entries}}
-            <div class="plant_entry" id="{{this.id}}">
-                <h3 class="plantName">{{this.name}}</h3>
-                {{!-- <p class="plantEntry">{{this.entry}}</p> --}}
+        {{#each entries as |entry index|}}
+            <div class="plant_entry entry_{{index}}" id="{{this._id}}">
+                <img class="delete_cut" src="https://www.svgrepo.com/show/435111/scissor-line-cut.svg" width="30px" alt="delete icon">
+                <div class="plant_preview">
+                    <h3 class="plantName">{{this.name}}</h3>
+                    {{#each this.stage}}
+                        <p class="plantStage">{{this.name}} stage</p>
+                    {{/each}}
+                </div>
             </div>
         {{/each}}
+    </div>
+
+    <div class="post_container">
+        <form class="post_entry_container">
+            <small class="post_denied">DON'T LEAVE A SINGLE DETAIL OUT!</small>
+            <div class="post_entry_header">
+                <img class="skip" src="https://www.svgrepo.com/show/520676/cross.svg" width="50px" alt="exit icon">
+                <h2>Create Plant Entry</h2>
+                <img class="cancel_post_entry" src="https://www.svgrepo.com/show/520676/cross.svg" width="50px" alt="exit icon">
+            </div>
+            <p class="label">Plant's official name:</p>
+            <input class="name_of_plant" type="text" name="name" placeholder="Ex: Mentha"/>
+            <p class="label">What stage is your plant at?</p>
+            <div class="entry_stage_options">
+                {{#each stages}}
+                    <div class="stage_option" name="stage" id="{{this._id}}">{{this.name}}</div>
+                {{/each}}
+            </div>
+            <div class="entry_stage_drop">
+                <select placeholder="Sprouting" class="stage_option stage_drop">
+                    {{#each stages}}
+                        <option class="select_option" id="{{this._id}}" value="{{this.name}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="label" id="stage_label">How was your planting journey?</div>
+            <textarea class="entry_description" type="text" name="entry" placeholder="Ex: This mentha plant has significantly improved my headaches and allergies"></textarea>
+            <br/>
+            <p class="label" id="photo_label">Share a photo of your plant!</p>
+            <input class="upload_image" type="file" name="image" accept="image/*" />
+            <br/>
+            <input class="submit_plant_entry" type="submit" name="post" value="Post"/>
+        </form>
+    </div>
+
+    <div class="planted_container" >
+        <div class="posted_entry">
+        {{#each entries as |entry index|}}
+            <div class="planted entry_{{index}}" id="{{this._id}}">
+                <div class="posted_entry_header">
+                    <div class="headerName">
+                        <div class="header_closer">
+                            <span>
+                                <small>Official Name:</small>
+                                <div class="header_edit_post entry_{{index}}">
+                                    <h2 class="plantedName entry_{{index}}">{{this.name}}</h2>
+                                    <img src="https://www.svgrepo.com/show/510962/edit-pencil-line-01.svg" width="30px" alt="edit icon" class="edit_icon" id="{{this._id}}">
+                                </div>
+                            </span>
+                            <img class="close_post" src="https://www.svgrepo.com/show/520676/cross.svg" width="50px" alt="exit icon">
+                        </div>
+                    </div>
+                </div>
+                <div class="planted_post">
+                    <img src="{{this.mediaURL}}" alt="{{this.name}} image">
+                    {{#each this.stage}}
+                        <div class="planted_stage">
+                            <small>Stage</small><br/>
+                            <div class="stage_edit_post entry_{{index}}">
+                                <p class="plantStage entry_{{index}}">{{this.name}}</p>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                <div class="planted_desc">
+                    <br/>
+                    <small>Plant Entry</small><br/>
+                    <div class="entry_edit_post entry_{{index}}">
+                        <p class="plantEntry entry_{{index}}">{{this.entry}}</p><br/>
+                    </div>
+                </div>
+                <div class="comment_section entry_{{index}}">
+                    <h3 class="subheader">Comments</h3>
+                    <div class="add_comment">
+                        <textarea class="create_comment" placeholder="Share your thoughts!"></textarea>
+                        <button class="comment_button"><img src="https://www.svgrepo.com/show/533306/send.svg" width="30px" alt="send icon" ></button>
+                    </div>
+                </div>
+                <button class="confirm_edit_button entry_{{index}}">Save</button>
+            </div>
+        {{/each}}
+        </div>
     </div>
 </main>

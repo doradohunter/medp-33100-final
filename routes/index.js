@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const { ObjectId } = require('mongodb');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -7,9 +8,23 @@ router.get('/', async function(req, res, next) {
   try{
     const db = req.app.locals.db;
     const entries = await db.collection('entries')
-      .find()
+      .aggregate([
+        {
+          $lookup: {
+            from: 'stages'
+            ,foreignField: '_id'
+            ,localField: 'stageID'
+            ,as: 'stage'
+          }
+        }
+      ])
       .toArray()
-      res.render('index', { entries:entries });
+      
+      const stages = await db.collection('stages')
+        .find()
+        .toArray()
+      
+      res.render('index', { entries:entries, stages:stages });
 
     } catch (error) {
       console.log(error)

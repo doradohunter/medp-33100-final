@@ -80,7 +80,8 @@ main{
     width: 100vw;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('https://res.cloudinary.com/doqunjdxq/image/upload/v1733427831/stem_ociaqs.svg')
+    background-image: url('https://res.cloudinary.com/doqunjdxq/image/upload/v1733427831/stem_ociaqs.svg');
+    background-attachment: fixed
 }
 
 /* fixed elements */
@@ -121,7 +122,7 @@ main{
     margin-top: 0px;
     border-radius: 37px;
 }
-.minimize_icon, .expand_lightbulb{
+.minimize_icon, .expand_lightbulb, .cancel_post_entry, .close_post{
     cursor: pointer;
 }
 .expand_lightbulb{
@@ -144,10 +145,11 @@ main{
 .sort_by_stages{
     font-family: "Rethink Sans", serif;
     right: 4vw;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     margin: 0px;
     padding: 0px;
 }
+
 .category{
     user-select: none;
     width: 100%;
@@ -157,7 +159,6 @@ main{
     text-align: center;
     border-radius: 37px;
     cursor: pointer;
-    transition: .3s ease;
 }
 .add_post_icon{
     top: 80vh;
@@ -176,23 +177,257 @@ main{
 
 /* plant entry */
 .plant_container{
-    display: flex;
+    /* display: grid;
+    grid-template-columns: 1fr,20vw, 20vw ,1fr;
+    grid-template-rows: repeat(3, 1fr); */
     flex-direction: column;
-    justify-content: center;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }
 .plant_entry{
-    border-radius: 100px;
+    font-size: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.plant_preview{
     background-color: #D4E8DE;
-    padding: 2% 5%;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    padding: 10% 20%;
+    padding-right: 10%;
+    transition: .3s ease;
+}
+.plant_preview:hover{
+    background-color: #8BABF1;
+}
+.delete_cut{
+    background-color: #D4E8DE;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    padding: 10% 20%;
+    padding-right: 10%;
+    padding-left: 5%;
+    transition: .3s ease;
+    border-left: #FAAF90 solid 1px;
+} 
+.delete_cut:hover{
+    background-color: #FAAF90;
+}
+.plantName{
+    width: 15vw;
+}
+.plantStage, .plantEntry{
+    margin: 0px;
+}
+.edit_stage{
+    display: block;
 }
 
-/* img:hover{
-    filter: brightness(0) saturate(100%) invert(68%) sepia(12%) saturate(1471%) hue-rotate(185deg) brightness(96%) contrast(96%);
-} */
+/* posting screen */
+.post_denied{
+    display: none;
+    background-color: #8BABF1;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 37px;
+}
+.post_entry_header{
+    display: flex;
+    justify-content: space-between;
+}
+.post_container, .planted_container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 3;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    background-color: #fceee8ce;
+    font-family: "Rethink Sans", serif;
+}
+.post_entry_container, .posted_entry{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    padding: 5%;
+    background-color: #FAAF90;
+    border-radius: 37px;
+}
+.post_entry_container h2{
+    text-align: center;
+}
+.label{
+    margin-bottom: 0px;
+    font-size: small;
+    font-weight: bold;
+}
+#stage_label{
+    margin-top: 2%;
+}
+#photo_label{
+    text-align: center;
+    margin-top: 0px;
+}
+input:not(.upload_image, .submit_plant_entry){
+    all:unset;
+    width: 100%;
+    background-color: white;
+    padding: .5% 1%;
+    border-radius: 5px;
+}
+textarea, .create_comment{
+    all: unset;
+    background-color: white;
+    height: 10vh;
+    width: 100%;
+    resize: none;
+    padding: .5% 1%;
+    overflow-x: hidden;
+    border-radius: 5px;
+}
+.entry_stage_options{
+    display: flex;
+    justify-content: space-evenly;
+}
+.stage_option{
+    margin-top: 0px;
+    background-color: #D4E8DE;
+    padding: .5% 2%;
+    border-radius: 37px;
+    cursor: pointer;
+    user-select: none;
+}
+.stage_drop:not(.stage_drop){
+    display: none;
+}
+.default_stage{
+    color: white;
+    background-color: #8BABF1;
+    box-shadow: #D4E8DE 2px 2px;
+}
+.upload_image, .submit_plant_entry{
+    margin-top: 4%;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    text-align: center;
+    text-align-last: center;
+}
+.submit_plant_entry{
+    font-family: "Rethink Sans" serif;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #8BABF1;
+    padding: 1% 5%;
+    border-radius: 37px;
+}
+
+/* posted elements */
+.planted_container{
+    z-index: 100;
+    display: flex;
+    overflow-y: auto;
+}
+.posted_entry{
+    width: 70vw;
+}
+.plantedName{
+    margin: 0px;
+}
+.posted_entry_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.header_edit_post{
+    display: flex;
+}
+.headerName{
+    width: 100%;
+}
+.edit_icon{
+    cursor: pointer;
+    align-self: baseline;
+}
+.close_post{
+    justify-self: flex-end;
+}
+.planted_post{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.planted_post img{
+    width: 70%;
+    border-radius: 5px;
+}
+.planted_stage{
+    flex-direction: column;
+}
+.add_comment, .header_closer{
+    display: flex;
+    justify-content: space-between;
+}
+.create_comment{
+    width: 85%;
+    height: 5vh;
+    border-radius: 5px;
+}
+.comment_button, .confirm_edit_button{
+    all: unset;
+    cursor: pointer;
+    background-color: #8BABF1;
+    border-radius: 100px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.planted_container, .planted{
+    display: none;
+}
+.confirm_edit_button{
+    display: none;
+    margin: auto;
+    padding: 2% 5%;
+    margin-top: 5%;
+    transition: .3s ease;
+}
+.confirm_edit_button:hover{
+    box-shadow: #D4E8DE 2px 2px;
+    color: white;
+}
+
+/* visual balance */
+.skip{
+    visibility: hidden;
+}
+small:not(#instruction){
+    font-weight: bold;
+}
 
 /* keyframe animations */
 @keyframes appear{
     from{}
     to{opacity: 100%}
+}
+
+/* responsive considerations*/
+@media screen and (max-width: 670px){
+    .entry_stage_options{
+        display:none;
+    }
+    .stage_drop{
+        display: block;
+        margin-bottom: 5%; 
+        text-align: center;
+        width: 100%;
+    }
 }
