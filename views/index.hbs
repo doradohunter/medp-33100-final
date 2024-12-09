@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<div class="container">
+    {{#each entries}}
+    <div class="entry" id="{{this._id}}">
+        <h3>{{this.game_name}}</h3>
+        <img width="25%" src="{{this.image_url}}">
+        {{#each author}}
+        <p>by {{this.username}}</p>
+        {{/each}}
+        <p>Created On: {{this.date_created}}</p>
+        <p>Platform: {{this.platform}}</p>
+        <p>{{this.entry_text}}</p>
+    </div>
+{{/each}}
+</div>
