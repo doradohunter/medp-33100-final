@@ -1,2 +1,7 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{#each memories}}
+  <div class='memory'>
+    <h2>{{this.title}}</h2>
+    <p>{{this.memory}}</p>
+    <p>{{this.authorId}}</p>
+  </div>
+{{/each}}
