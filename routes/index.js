@@ -23,6 +23,11 @@ router.get('/', async function (req, res, next) {
             foreignField: '_id',
             as: 'platform'
           }
+        },
+        {
+          $sort: {
+            date_created: -1
+          }
         }
       ])
       .toArray();

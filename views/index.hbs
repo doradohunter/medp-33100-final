@@ -1,6 +1,20 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<button></button>
+<div class="add_buttons">
+    <button>Create an Account</button>
+    <button>Add a New Entry</button>
+</div>
+
+<form id="new-account">
+    <h2>Create an Account</h2>
+    <label class="bold" for="usernameInput">Username:</label>
+    <input type="text" id="usernameInput" name="usernameInput"><br><br>
+
+    <label class="bold" for="emailInput">Email:</label>
+    <input type="text" size="30" id="emailInput" name="emailInput"><br><br>
+    <input id="accountSubmit" type="submit" value="Submit">
+</form>
+
 <form id="new-entry">
     <h2>Add New Entry</h2>
     <label class="bold" for="nameInput">Game Name:</label>
@@ -22,8 +36,8 @@
         {{/each}}
     </select><br><br>
     <label class="bold" for="bodyInput">What do you want to say?:</label>
-    <input type="text" id="bodyInput" name="bodyInput"><br><br>
-    <input type="submit" value="Submit">
+    <input type="text" style="width: 300px; height: 100px;" id="bodyInput" name="bodyInput"><br><br>
+    <input id="entrySubmit" type="submit" value="Submit">
 </form>
 <div class="container">
     {{#each entries}}
