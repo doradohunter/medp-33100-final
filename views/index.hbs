@@ -1,16 +1,45 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<button></button>
+<form id="new-entry">
+    <h2>Add New Entry</h2>
+    <label class="bold" for="nameInput">Game Name:</label>
+    <input type="text" id="nameInput" name="nameInput"><br><br>
+
+    <label class="bold" for="imageInput">Image Url:</label>
+    <input type="text" id="imageInput" name="imageInput"><br><br>
+
+    <label class="bold" for="authorInput">Author:</label>
+    <select name="authorInput" id="authorInput">
+        {{#each authors}}
+            <option value="{{this._id}}">{{this.username}}</option>
+        {{/each}}
+    </select><br><br>
+    <label class="bold" for="platformInput">Platform:</label>
+    <select name="platformInput" id="platformInput">
+        {{#each platforms}}
+            <option value="{{this._id}}">{{this.platform_name}}</option>
+        {{/each}}
+    </select><br><br>
+    <label class="bold" for="bodyInput">What do you want to say?:</label>
+    <input type="text" id="bodyInput" name="bodyInput"><br><br>
+    <input type="submit" value="Submit">
+</form>
 <div class="container">
     {{#each entries}}
     <div class="entry" id="{{this._id}}">
         <h3>{{this.game_name}}</h3>
-        <img width="25%" src="{{this.image_url}}">
+        <button class="delete_button">Delete</button><br>
+        <img class="game_image" alt="image of {{this.game_name}}" src="{{this.image_url}}">
         {{#each author}}
-        <p>by {{this.username}}</p>
+            <p>by {{this.username}}</p>
         {{/each}}
         <p>Created On: {{this.date_created}}</p>
-        <p>Platform: {{this.platform}}</p>
+        {{#each platform}}
+            <p>Platform: {{this.platform_name}}</p>
+        {{/each}}
         <p>{{this.entry_text}}</p>
+        <button class="edit_button">Edit</button>
     </div>
 {{/each}}
 </div>

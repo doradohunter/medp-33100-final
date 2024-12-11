@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+
+.bold{
+  font-weight: bold;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.entry{
+  border: 3px dotted limegreen;
+  padding: 10px;
+}
+
+.game_image{
+  width: 25%;
+}
+
+
