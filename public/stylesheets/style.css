@@ -1,8 +1,55 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@font-face {
+  font-family: 'HankenGrotesk';
+  src: url(/HankenGrotesk-Regular.ttf);
 }
 
-a {
-  color: #00B7FF;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'HankenGrotesk';
+}
+
+h1 {
+  text-align: center;
+}
+
+.diary {
+  width: 80%;
+  background-color: #5c4033;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+  padding: 10px 0;
+}
+
+.page {
+  width: 45%;
+  background-color: white;
+}
+
+.page:first-child {
+  border-right: solid black;
+}
+
+.memory {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.memory-title {
+  margin: 10px 0;
+}
+
+.memory-text {
+  height: 100%;
+}
+
+.memory-author {
+  align-self: flex-end;
 }
