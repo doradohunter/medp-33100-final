@@ -9,8 +9,17 @@
   font-family: 'HankenGrotesk';
 }
 
+.full {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 95%;
+  margin: auto;
+}
+
 h1 {
   text-align: center;
+  margin: 20px 0;
 }
 
 .diary {
@@ -19,6 +28,7 @@ h1 {
   margin: auto;
   display: flex;
   justify-content: center;
+  gap: 2px;
   height: 85vh;
   padding: 10px 0;
 }
@@ -26,10 +36,6 @@ h1 {
 .page {
   width: 45%;
   background-color: white;
-}
-
-.page:first-child {
-  border-right: solid black;
 }
 
 .memory {
