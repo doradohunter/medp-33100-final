@@ -7,7 +7,7 @@ function displayPages() {
     if (index < left || index > right) {
       eachPage.style.display = 'none';
     }
-  })
+  });
 
   changePage(left, right);
 }
@@ -27,8 +27,8 @@ function changePage(left, right) {
       } else {
         eachPage.style.display = '';
       }
-    })
-  })
+    });
+  });
 
   leftButton.addEventListener('click', () => {
     left--;
@@ -40,9 +40,8 @@ function changePage(left, right) {
       } else {
         eachPage.style.display = '';
       }
-    })
-  })
+    });
+  });
 }
 
 displayPages();
-
