@@ -19,7 +19,6 @@ router.get('/', async function (req, res, next) {
       ])
       .toArray();
 
-    console.log(memories);
     res.render('index', { title: 'Express', memories: memories });
   } catch (error) {
     console.log(error);

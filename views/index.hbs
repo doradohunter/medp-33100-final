@@ -1,7 +1,15 @@
-{{#each memories}}
-  <div class='memory'>
-    <h2>{{this.title}}</h2>
-    <p>{{this.memory}}</p>
-    <p>{{this.authorId}}</p>
-  </div>
-{{/each}}
+<h1>Memory Diary</h1>
+
+<div class='diary'>
+  {{#each memories}}
+    <div class='page'>
+      <div class='memory'>
+        <h2 class='memory-title'>{{this.title}}</h2>
+        <p class='memory-text'>{{this.memory}}</p>
+        <p class='memory-author'>By {{this.authorId}}</p>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<script src='/javascripts/script.js'></script>
