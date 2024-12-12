@@ -27,4 +27,24 @@ router.post('/', async function (req, res) {
     }
 })
 
+router.put('/', async function(req, res){
+    console.log('pulling!~')
+    try {
+        const db = req.app.locals.db;
+        await db.collection('entries')
+            .updateOne(
+                {_id: new ObjectId(req.body.id)},
+                {$set: {
+                    game_name: req.body.game_name,
+                    image_url: req.body.image_url,
+                    entry_text: req.body.entry_text,
+                    date_created: new Timestamp({ t: Math.floor(Date.now() / 1000), i: 0 })
+                }}
+            )
+        console.log(test)
+    } catch (error) {
+        console.log('error when updating!!!')
+    }
+})
+
 module.exports = router;

@@ -17,13 +17,17 @@ a {
   align-content: space-around;
 }
 
+.top_line{
+  display: flex;
+  align-content: space-between;
+  column-gap: 100px;
+}
+
 .entry{
   border: 3px dotted limegreen;
   padding: 10px;
 }
 
-.game_image{
-  width: 25%;
+img{
+  width: 50%;
 }
-
-
