@@ -1,44 +1,32 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-<div class="add_buttons">
-    <button>Create an Account</button>
-    <button>Add a New Entry</button>
-</div>
-
-<form id="new-account">
-    <h2>Create an Account</h2>
-    <label class="bold" for="usernameInput">Username:</label>
-    <input type="text" id="usernameInput" name="usernameInput"><br><br>
-
-    <label class="bold" for="emailInput">Email:</label>
-    <input type="text" size="30" id="emailInput" name="emailInput"><br><br>
-    <input id="accountSubmit" type="submit" value="Submit">
-</form>
 
 <form id="new-entry">
     <h2>Add New Entry</h2>
-    <label class="bold" for="nameInput">Game Name:</label>
+    <p><label class="bold" for="nameInput">What's the name of the game you played?</label></p>
     <input type="text" id="nameInput" name="nameInput"><br><br>
 
-    <label class="bold" for="imageInput">Image Url:</label>
+    <p><label class="bold" for="imageInput">Image Url:</label></p>
     <input type="text" id="imageInput" name="imageInput"><br><br>
 
-    <label class="bold" for="authorInput">Author:</label>
-    <select name="authorInput" id="authorInput">
-        {{#each authors}}
-            <option value="{{this._id}}">{{this.username}}</option>
-        {{/each}}
-    </select><br><br>
-    <label class="bold" for="platformInput">Platform:</label>
-    <select name="platformInput" id="platformInput">
-        {{#each platforms}}
-            <option value="{{this._id}}">{{this.platform_name}}</option>
-        {{/each}}
-    </select><br><br>
+    <p><label class="bold" for="authorInput">Author:</label></p>
+    <input type="text" id="authorInput" name="authorInput"><br><br>
+
+    <p><label class="bold" for="platformInput">Platform:</label></p>
+    <input type="text" id="platformInput" name="platformInput"><br><br>
+
     <p><label class="bold" for="bodyInput">What do you want to say?:</label></p>
     <textarea id="bodyInput" name="bodyInput" rows="4" cols="50">Insert Journal Entry Here!</textarea><br><br>
     <input id="entrySubmit" type="submit" value="Submit">
 </form>
+<form id="searchBar">
+    <label class="bold" for="searchText">Search:</label>
+    <input type="search" id="searchText" name="searchText" placeholder="search terms">
+    <input id="searchSubmit" type="submit" value="Submit">
+</form>
+<div class="add_button">
+    <button>Add a New Entry</button>
+</div>
 <div class="container">
     {{#each entries}}
     <div class="entry" id="{{this._id}}">
@@ -49,13 +37,9 @@
         <div class="game_image">
             <img class="game_image_url" alt="image of {{this.game_name}}" src="{{this.image_url}}">
         </div>
-        {{#each author}}
-            <p class="author">by {{this.username}}</p>
-        {{/each}}
+        <p class="author">by <span class="author_text">{{this.author}}</span></p>
         <p class="date">Created On: {{this.date_created}}</p>
-        {{#each platform}}
-            <p class="platform">Platform: {{this.platform_name}}</p>
-        {{/each}}
+        <p class="platform">Played On: <span class="platform_text">{{this.platform}}</span></p>
         <p class="entry_text">{{this.entry_text}}</p>
         <button class="edit_button">Edit</button>
     </div>

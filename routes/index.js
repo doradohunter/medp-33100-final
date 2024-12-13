@@ -1,4 +1,5 @@
 var express = require('express');
+const { format } = require('morgan');
 var router = express.Router();
 
 /* GET home page. */
@@ -9,32 +10,27 @@ router.get('/', async function (req, res, next) {
     const entries = await db.collection('entries')
       .aggregate([
         {
-          $lookup: {
-            from: 'authors',
-            localField: 'author',
-            foreignField: '_id',
-            as: 'author'
-          }
-        },
-        {
-          $lookup: {
-            from: 'platforms',
-            localField: 'platform',
-            foreignField: '_id',
-            as: 'platform'
-          }
-        },
-        {
           $sort: {
             date_created: -1
           }
+          
+        },
+        {
+          $project: {
+            date_created: { $toDate: "$date_created" },
+            date_created: {$dateToString: {format: '%b %d %Y', date: '$date_created'}},
+            game_name: 1,
+            author: 1,
+            image_url: 1,
+            platform: 1,
+            entry_text: 1
+          }
         }
+        
       ])
       .toArray();
-    const authors = await db.collection('authors').find().toArray();
-    const platforms = await db.collection('platforms').find().toArray();
 
-    res.render('index', { title: 'Gaming Journal', entries: entries, authors: authors, platforms: platforms});
+    res.render('index', { title: 'Gaming Journal', entries: entries});
   } catch (error) {
     console.log('error!');
     res.status(500).send('An error occurred');
