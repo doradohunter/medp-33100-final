@@ -45,17 +45,15 @@ router.put('/', async function(req,res,next){
       const db = req.app.locals.db;
       const post = req.body;
       
-      await db.collection('products')
+      await db.collection('entries')
           .updateOne({
             _id: new ObjectId(post.postID)
           }
-          ,{ 
-            $set: {
+          ,{ $set: {
               name: post.name
               ,entry: post.entry
               ,stageID: new ObjectId(post.stageID)
-            } 
-          })
+            } })
 
       res.send('Successfully updated');
 
