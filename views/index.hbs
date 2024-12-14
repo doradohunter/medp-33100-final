@@ -5,7 +5,7 @@
             <hr/>
             <p class="instructions">Water the digital plant with your planting entry and help it grow by interacting with it.</p>
         </div>
-        <small id="instruction">Press anywhere to continue</small>
+        <small class="instruction">Press anywhere to continue</small>
     </div>
 </header>
 <main>
@@ -37,9 +37,25 @@
     </div>
     <div class="sort_by_stages">
         <div class="category_subheader">Sort By</div>
-        {{#each stages}}
-            <div class="category" id="{{this._id}}">{{this.name}}</div>
-        {{/each}}
+        <div class="sort_by_category">
+            {{#each stages as | stage index |}}
+                <div class="category stage_{{index}}" id="{{this._id}}">{{this.name}}</div>
+            {{/each}}
+        </div>
+        <div class="cate_dropdown">
+            <div class="noCate stage_0 cate_stage">None</div>
+            <img src="https://www.svgrepo.com/show/520696/down-arrow-5.svg" alt="dropdown icon" width="30px">
+        </div>
+        
+    </div>
+    <div class="cate_container">
+        <div class="sort_by_cate">
+            <div class="cate selected_cate">None</div>
+            {{#each stages as | stage index |}}
+                <div class="cate stage_{{index}}" id="{{this._id}}">{{this.name}}</div>
+            {{/each}}
+        </div>
+        <small class="instruction">Press anywhere to exit</small>
     </div>
 
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="add_post_icon" width="150px">
@@ -48,7 +64,6 @@
           a 36,36 0 1,1 72,0
           a 36,36 0 1,1 -72,0
         " />
-    {{!-- <text id="text" font-family="Oleo Script Swash Caps" font-size="17" font-weight="normal" fill="var(--text-1)"> --}}
     <text id="text" font-family="Rethink Sans" font-size="18" font-weight="normal" fill="var(--text-1)">
       <textPath id="textPath" href="#circlePath">Add an Entry!</textPath>
     </text>
@@ -145,12 +160,20 @@
                     </div>
                     <br/>
                 </div>
-                <div class="comment_section entry_{{index}}">
+                <div class="comment_entry_section entry_{{index}}">
                     <h3 class="subheader">Comments</h3>
                     <div class="add_comment">
-                        <textarea class="create_comment" placeholder="Share your thoughts!"></textarea>
-                        <button class="comment_button"><img src="https://www.svgrepo.com/show/533306/send.svg" width="30px" alt="send icon" ></button>
+                        <textarea class="create_comment entry_{{index}}" placeholder="Share your thoughts!"></textarea>
+                        <button class="comment_button entry_{{index}}"><img src="https://www.svgrepo.com/show/533306/send.svg" width="30px" alt="send icon" ></button>
                     </div>
+                </div>
+                <div class="comment_section">
+                    {{#each this.comment}}
+                        <div class="comment" id="{{this._id}}">
+                            <img class="del_comment" src="https://www.svgrepo.com/show/325101/delete-circled-outline.svg" width="30px" alt="delete comment icon">
+                            <p class="comment_text">{{this.text}}</p>
+                        </div>
+                    {{/each}}
                 </div>
                 <button class="confirm_edit_button entry_{{index}}">Save</button>
             </div>

@@ -81,7 +81,6 @@ main{
     background-position: center;
     background-repeat: no-repeat;
     background-image: url('https://res.cloudinary.com/doqunjdxq/image/upload/v1733427831/stem_ociaqs.svg');
-    background-attachment: fixed
 }
 
 /* fixed elements */
@@ -143,29 +142,32 @@ main{
 
 /* Right sortby */
 .category_subheader{
-    width: 100%;
     text-align: center;
-    margin: auto;
-    margin-top: 5%;
-    font-weight: bold;
+    margin-top: 1vh;
+    font-size: 22px;
 }
 .sort_by_stages{
-    width: 10%;
     font-family: "Rethink Sans", serif;
     right: 4vw;
     background-color: rgba(255, 255, 255, 0);
     margin: 0px;
     padding: 0px;
+    width: 10%;
 }
 
 .category{
     user-select: none;
-    padding: 5% 10%;
+    width: 100%;
     margin-top: 20%;
     background-color: #FAAF90;
     text-align: center;
     border-radius: 37px;
     cursor: pointer;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+.stage_0{
+    margin-top: 5%;
 }
 .add_post_icon{
     top: 80vh;
@@ -177,9 +179,57 @@ main{
     background-position: center;
     cursor: pointer;
     transition: .3s ease;
+    border-radius: 100px;
 }
 .add_post_icon:hover{
     transform: scale(105%);
+}
+
+/* mobile category sort */
+.cate_dropdown{
+    display: flex;
+    background-color: #FAAF90;
+    border-radius: 37px;
+    padding: 2% 10%;
+    padding-right:5%;
+    cursor:pointer;
+}
+.cate_dropdown{
+    display: none;
+}
+.cate_container{
+    z-index: 5;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fceee886;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.sort_by_cate{
+    font-family: "Rethink Sans", serif;
+    background-color: #FAAF90;
+    width: 70vw;
+    border-radius: 37px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2%;
+}
+.cate{
+    background-color: #D4E8DE;
+    border-radius: 37px;
+    padding: 5%;
+    margin: 2%;
+    text-align: center;
+    cursor: pointer;
+}
+.selected_cate{
+    color: white;
+    background-color: #8BABF1;
+    box-shadow: #D4E8DE 2px 2px;
 }
 
 /* plant entry */
@@ -191,29 +241,26 @@ main{
 .plant_structure{
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: baseline;
     flex-wrap: wrap-reverse;
     height: 100%;
     width: 70%;
+    overflow-y: auto;
 }
 
 .plant_entry:nth-child(odd){
     flex-direction: row-reverse;
 }
 .plant_entry:nth-child(odd), .plant_entry:nth-child(odd) .plant_preview{
-    /* color:red; */
     border-bottom-left-radius: 100px;
 }
 .plant_entry:nth-child(odd), .plant_entry:nth-child(odd) .delete_cut{
-    border-left: #FAAF90 solid 2px;
     border-top-right-radius: 100px;
 }
 .plant_entry:nth-child(even), .plant_entry:nth-child(even) .plant_preview{
-    /* color:blue;     */
     border-bottom-right-radius: 100px;
 }
 .plant_entry:nth-child(even), .plant_entry:nth-child(even) .delete_cut{
-    border-right: #FAAF90 solid 2px;
     border-top-left-radius: 100px;
 }
 
@@ -225,9 +272,9 @@ main{
     cursor: pointer;
     display: flex;
     transition: .3s ease;
+    margin-bottom: 5%;
 }
 .plant_preview{
-    width: 100%;
     text-align: -webkit-center;
     align-self: center;
     pointer-events: auto;
@@ -392,7 +439,7 @@ textarea, .create_comment{
     justify-content: space-evenly;
 }
 .planted_post img{
-    width: 70%;
+    width: 50%;
     border-radius: 5px;
 }
 .planted_stage{
@@ -417,6 +464,40 @@ textarea, .create_comment{
     justify-content: center;
     align-items: center;
 }
+.comment_section{
+    height: fit-content;
+    max-height: 20vh;
+    overflow-y: auto;
+    scrollbar-color: #D4E8DE #FAAF90;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.comment{
+    display: flex;
+    margin-top: 2%;
+}
+.del_comment{
+    padding-left: 1%;
+    padding-right: 1%;
+    cursor: pointer;
+    background-color: #D4E8DE;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition: .3s ease;
+}
+.del_comment:hover{
+    background-color: #E0BCB7;
+}
+.comment p {
+    margin: 0px;
+    padding: 2%;
+    padding-left: 1%;
+    width: 100%;
+    height: 100%;
+    background-color: #D4E8DE;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 .planted_container, .planted{
     display: none;
 }
@@ -435,7 +516,7 @@ textarea, .create_comment{
 .skip{
     visibility: hidden;
 }
-small:not(#instruction){
+small:not(.instruction){
     font-weight: bold;
 }
 
@@ -446,7 +527,32 @@ small:not(#instruction){
 }
 
 /* responsive considerations*/
+@media screen and (min-width: 1200px){
+    .posted_entry{
+        width: 40vw;
+    }
+}
+@media screen and (min-width: 1000px){
+    .posted_entry{
+        width: 50vw;
+        padding: 2%;
+    }
+}
+@media screen and (max-width: 780px) {
+    .plant_structure{
+        width: 80%;
+    }
+    .sort_by_stages{
+        width: 20%;
+    }
+}
 @media screen and (max-width: 670px){
+    .why_plant{
+        max-width: 70vw;
+    }
+    .plant_icon{
+        display: none;
+    }
     .entry_stage_options{
         display:none;
     }
@@ -456,15 +562,26 @@ small:not(#instruction){
         text-align: center;
         width: 100%;
     }
-}
-@media screen and (min-width: 1000px){
-    .posted_entry{
-        width: 50vw;
-        padding: 2%;
+    .plant_structure{
+        height: 80%;
+        width: 100%;
+    }
+    .plant_entry{
+        margin-top: 10%;
+        font-size: 2.5vw;
+    }
+    .sort_by_category{
+        display: none;
+    }
+    .cate_dropdown{
+        display: flex;
+        justify-content: space-evenly;
     }
 }
-@media screen and (min-width: 1200px){
-    .posted_entry{
-        width: 40vw;
+
+@media screen and (max-height: 750px) {
+    .plant_icon{
+        top: 35vh;
     }
+    
 }

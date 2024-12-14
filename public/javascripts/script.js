@@ -8,13 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
             content.style.animation = 'appear 3s forwards';
         })
     }
+    //if first time user lands on webpage show instructions
     if(sessionStorage.getItem('newUser') === null){
         sessionStorage.setItem('newUser', false);
         header.addEventListener('click', () => {
             header_toggle()
         })
-    }else{
+    }else{  //else don't show instructions while webpage is open on users browser
         header.style.display='none';
+        header.style.opacity='0%';
         header_brand.forEach(content => {
             content.style.opacity = '100%';
         })
@@ -47,12 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const stage_options = document.querySelectorAll('.stage_option');
     const plantEntries = document.querySelectorAll('.plant_entry')
 
+    //mobile category
+    const stage_button = document.querySelector('.cate_stage')
+
     let entryList = {};
     let entryToggle = false;
     let allEntryElements = [];
+    
+    //display all entries (default view)
+    const renderAllEntries = () => {
+        allEntryElements.forEach(element => {
+            entry_container.appendChild(element)
+        })
+    }
+
+    //get filtered entries
     const getSortedData = (selectedStage) => {
         let entryElement = []
         if(entryToggle === false){
+            stage_button.innerHTML = 'None';
             plantEntries.forEach(entry => {
                 //create a full list of all entries once
                 let entryStage = entry.querySelector('.plantStage').innerHTML
@@ -62,9 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             entryToggle = true;
         }else{
-            allEntryElements.forEach(element => { //reset document
-                entry_container.appendChild(element)
-            })
+            stage_button.innerHTML = selectedStage
+            renderAllEntries() //reset document
             for (const key in entryList){   //get filter list
                 if(entryList[key] === selectedStage + ' stage'){
                     entryElement.push(document.querySelector(`.${key}`))
@@ -84,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             select.style.color = 'black'
             select.style.backgroundColor = '#FAAF90'
             select.style.boxShadow = 'none'
-            allEntryElements.forEach(element => {
-                entry_container.appendChild(element)
-            })
+            renderAllEntries()
         }else{  //clicked once
             element.forEach(deselect =>{
                 deselect.innerHTML != select.innerHTML? deselect.value = false : null
@@ -115,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    // create plant entry stage options
     let plant_stage = '67537aff65d259ca6d6088c5'
     let plant_stage_name = 'Sprouting'
     stage_options.forEach(opt => {
@@ -127,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-    //create plant entry
+    // CREATE plant entry
     const denied_post = document.querySelector('.post_denied');
     const post_entry_container = document.querySelector('.post_container');
     const create_icon = document.querySelector('.add_post_icon');
@@ -135,11 +148,20 @@ document.addEventListener('DOMContentLoaded', () => {
         post_entry_container.style.display = "flex";
         denied_post.style.display = 'none';
     })
-
-    //cancel plant entry
+    
+    // CANCEL plant entry
     const cross_icon = document.querySelector('.cancel_post_entry');
     cross_icon.addEventListener('click', () => {
         post_entry_container.style.display = "none";
+    })
+
+    // DELETE a plant entry
+    const cut_away = document.querySelectorAll('.delete_cut')
+    cut_away.forEach(entry => {
+        entry.addEventListener('click', () => {
+            deletePlantPosted(entry.parentElement.id)
+            location.reload();
+        })
     })
 
     //post plant entry
@@ -176,20 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    // open to view post
-    const planted_container = document.querySelector('.planted_container')
-    
     // edit a post
     let postID = ''
     const allEditIcons = document.querySelectorAll('.edit_icon');
-    
     const og_plant_stage_input = document.querySelector('.stage_drop')
     const plant_stage_input = og_plant_stage_input.cloneNode(true)
-
-    //keep old information
+    // keep current/old information
     let edit_icon, current_name, current_entry, current_stage, current_comment_section, clone_confirm_edit_button, editing;
 
-    //get and set/reset new values from edited changes
+    // GET AND SET/RESET new values from edited changes (reseting changes are depreciated)
     let newPlantName, newPlantEntry = '';
     const getandputEdits = (entryNum, save) => {
         if(save === true){
@@ -225,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         content_stage.innerHTML = '';
         content_stage.appendChild(edited_plant_stage)
         //comment section
-        const content_comment = document.querySelector(`.comment_section.${entryNum}`);
+        const content_comment = document.querySelector(`.comment_entry_section.${entryNum}`);
         content_comment.innerHTML = ''
         content_comment.appendChild(current_comment_subheader);
         content_comment.appendChild(current_comment_section);
@@ -233,10 +250,13 @@ document.addEventListener('DOMContentLoaded', () => {
         content_planted_entry.appendChild(clone_confirm_edit_button)
     }
 
-    // open to view post
+    // OPEN to view post
+    const planted_container = document.querySelector('.planted_container')
     plantEntries.forEach(entry => {
         let entry_area = entry.querySelector('.plant_preview') 
         entry_area.addEventListener('click', () => {
+            sessionStorage.setItem('viewPost', `.planted.${entry.classList[1]}`)
+            
             planted_container.style.display = 'flex';
             document.querySelector(`.planted.${entry.classList[1]}`).style.display = 'block'
 
@@ -257,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const content_stage = document.querySelector(`.stage_edit_post.${thisPostID.classList[1]}`);
                     //comment elements
                     const confirm_edit_button = document.querySelector(`.confirm_edit_button.${thisPostID.classList[1]}`)
-                    const comment_section = document.querySelector(`.comment_section.${thisPostID.classList[1]}`)
+                    const comment_section = document.querySelector(`.comment_entry_section.${thisPostID.classList[1]}`)
                     //keep current data
                     edit_icon = content_header.querySelector('.edit_icon').cloneNode(true);
                     current_name = edit_plant_name.innerHTML;
@@ -307,20 +327,21 @@ document.addEventListener('DOMContentLoaded', () => {
                             ,stageID: plant_stage
                         }
                         updatePlantPost(updatedPost)
-                        setTimeout(() => {
-                            location.reload();
-                        }, 200)
+                        stallReload()
+
                     })
                 })
             })
         })
     })
 
-    // close viewing post
+    // CLOSE viewing post
     const allPostedEntires = document.querySelectorAll('.planted')
     const close_post = document.querySelectorAll('.close_post')
     close_post.forEach(icon => {
         icon.addEventListener('click', () => {
+            sessionStorage.setItem('viewPost', 'close')
+
             planted_container.style.display = 'none';
             allPostedEntires.forEach(entry => {
                 entry.style.display = 'none'
@@ -332,19 +353,102 @@ document.addEventListener('DOMContentLoaded', () => {
             
         })
     })
-    
-    // delete a post
-    const cut_away = document.querySelectorAll('.delete_cut')
-    cut_away.forEach(entry => {
-        entry.addEventListener('click', () => {
-            deletePlantPosted(entry.parentElement.id)
-            location.reload();
+
+    // keep a post open for comment to load
+    if(sessionStorage.getItem('viewPost') != 'close'){
+        planted_container.style.display = 'flex';
+        document.querySelector(sessionStorage.getItem('viewPost')).style.display = 'block';
+    }else{
+        planted_container.style.display = 'none';
+    }
+    // POST a comment
+    const comment_input = document.querySelectorAll('.create_comment');
+    comment_input.forEach(input => {
+        input.addEventListener('change', () => {
+            if(input.value != 0){
+                const comment_input_button = document.querySelector(`.comment_button.${input.classList[1]}`)
+                const submit_comments = () => {
+                   
+                    let post_comment = {
+                        postID: input.parentElement.parentElement.parentElement.id
+                        ,text: input.value
+                    }
+
+                    fetch('/comments', {
+                        method: 'POST'
+                        ,headers: {
+                            'Content-Type': 'application/json'
+                        }
+                        ,body: JSON.stringify(post_comment)
+                    });
+                    
+                    stallReload()
+                }
+                comment_input_button.addEventListener('click', submit_comments)
+                comment_input_button.addEventListener('keypress', (e) => {
+                    if(e.key == 'Enter'){
+                        submit_comments()
+                    }
+                })
+            }
         })
     })
+    //DELETE a comment
+    const del_comment = document.querySelectorAll('.del_comment');
+    del_comment.forEach(comment => {
+        comment.addEventListener('click', () => {
+            deleteComment(comment.parentElement.id)
+            stallReload()
+        })
+    })
+
+    // wait to reload
+    const stallReload = () => {
+        setTimeout(() => {
+            location.reload();
+        }, 200)
+    }
+
+    //mobile sort by stage
+    const cate_stage_container = document.querySelector('.cate_container');
+    const cate_dropdown = document.querySelector('.cate_dropdown');
+    const cate = document.querySelectorAll('.cate');
+    stage_button.innerHTML = 'None';
+    cate_dropdown.addEventListener('click', () => {
+        cate_stage_container.style.display = 'flex';
+    })
+    let curr_mob_stage;
+    cate.forEach(stage => {
+        stage.addEventListener('click', () => {
+            
+            cate.forEach(stage => {stage.classList.remove('selected_cate')})
+            stage.classList.add('selected_cate')
+            if(stage.innerHTML === 'None'){
+                curr_mob_stage.value = true;
+                selected_stage(stage_categories, document.querySelector(`.category.${curr_mob_stage}`))
+                renderAllEntries()
+                stage_button.innerHTML = 'None';
+            }else{
+                selected_stage(stage_categories, document.querySelector(`.category.${stage.classList[1]}`));
+                getSortedData(stage.innerHTML);
+                curr_mob_stage = stage.classList[1];
+            }
+        })
+    })
+    cate_stage_container.addEventListener('click', () => {
+       cate_stage_container.style.display = 'none'
+    })
+
 });
 
 async function deletePlantPosted(postID){
     fetch('entry/' + postID, {
+        method: 'DELETE'
+    })
+}
+
+async function deleteComment(commentID){
+    fetch('comments/' + commentID, {
         method: 'DELETE'
     })
 }
@@ -359,4 +463,5 @@ async function updatePlantPost(updatePost){
     });
 }
 
-//COMMENTS, responsive, gsap
+
+//gsap (del cut animation, post grow animation, snip sound effect), update README, make slides, upload to GLITCH and post on spreadsheet 

@@ -16,6 +16,14 @@ router.get('/', async function(req, res, next) {
             ,localField: 'stageID'
             ,as: 'stage'
           }
+        },
+        {
+          $lookup: {
+            from: 'comments'
+            ,foreignField: 'postID'
+            ,localField: '_id'
+            ,as: 'comment'
+          }
         }
       ])
       .toArray()
@@ -23,7 +31,7 @@ router.get('/', async function(req, res, next) {
       const stages = await db.collection('stages')
         .find()
         .toArray()
-      
+        
       res.render('index', { entries:entries, stages:stages });
 
     } catch (error) {
