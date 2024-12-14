@@ -479,8 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     //GSAP animation
-    // gsap.registerPlugin(Flip)
-    
     // Delete animation
     const dropLeaf = (entryClassNum) => {
         let leaf = gsap.timeline();
@@ -518,6 +516,3 @@ async function updatePlantPost(updatePost){
         body: JSON.stringify(updatePost)
     });
 }
-
-
-//gsap, update README, make slides, upload to GLITCH and post on spreadsheet 
