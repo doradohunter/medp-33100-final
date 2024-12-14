@@ -274,6 +274,12 @@ main{
     transition: .3s ease;
     margin-bottom: 5%;
 }
+.new_plant_entry{
+    opacity: 0%;
+    scale: 0;
+    cursor: default;
+    pointer-events: none;
+}
 .plant_preview{
     text-align: -webkit-center;
     align-self: center;

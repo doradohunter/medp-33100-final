@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //mobile category
     const stage_button = document.querySelector('.cate_stage')
+    const cate = document.querySelectorAll('.cate');
+    const setSelectedMob = (selectedStage) => {
+        cate.forEach(stage => {
+            stage.classList.remove('selected_cate')
+            if(stage.innerHTML === selectedStage){
+                stage.classList.add('selected_cate')
+            }
+        })
+    }
 
     let entryList = {};
     let entryToggle = false;
@@ -64,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //get filtered entries
+    let curr_web_stage;
     const getSortedData = (selectedStage) => {
         let entryElement = []
         if(entryToggle === false){
-            stage_button.innerHTML = 'None';
             plantEntries.forEach(entry => {
                 //create a full list of all entries once
                 let entryStage = entry.querySelector('.plantStage').innerHTML
@@ -77,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             entryToggle = true;
         }else{
+            curr_web_stage = selectedStage;
             stage_button.innerHTML = selectedStage
             renderAllEntries() //reset document
             for (const key in entryList){   //get filter list
@@ -94,7 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const selected_stage = (element, select) => {
         if(select.value === true){ //clicked twice
-            element===stage_categories ? select.value = false : null;
+            if(element === stage_categories){
+                select.value = false;
+                setSelectedMob('None');
+                stage_button.innerHTML = 'None';
+            }
             select.style.color = 'black'
             select.style.backgroundColor = '#FAAF90'
             select.style.boxShadow = 'none'
@@ -114,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             if (element === stage_categories){
                 getSortedData(select.innerHTML)
+                setSelectedMob(curr_web_stage)  //FE
                 select.value = true
             }
             select.style.color = 'white'
@@ -136,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         opt.addEventListener('click', () => {
             selected_stage(stage_options, opt)
+            plant_stage_name = opt.innerHTML
             plant_stage = opt.id
         })
     })
@@ -156,15 +172,21 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // DELETE a plant entry
-    const cut_away = document.querySelectorAll('.delete_cut')
+    const cut_sfx = document.querySelector('.cut_sfx');
+    const cut_away = document.querySelectorAll('.delete_cut');
     cut_away.forEach(entry => {
         entry.addEventListener('click', () => {
+            pause_engagement = true;
             deletePlantPosted(entry.parentElement.id)
-            location.reload();
+            dropLeaf(`.${entry.parentElement.classList[0]}.${entry.parentElement.classList[1]}`)
+            cut_sfx.play()
+            document.querySelector('body').style.cursor = 'wait'
+            stallReload(1500);
         })
     })
 
     //post plant entry
+    const post_sfx = document.querySelector('.bubble_pop');
     const form = document.querySelector('.post_entry_container');
     const plant_name = document.querySelector('.name_of_plant');
     const plant_entry = document.querySelector('.entry_description');
@@ -181,8 +203,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if(plant_name.value.length != 0 && plant_entry.value.length != 0 && uploaded_image.value != 0){
             post_entry_container.style.display = 'none';
 
-            //add plant entry to entries
             const formData = new FormData(form);
+
+            // grow a temp new entry leaf
+            post_sfx.play();
+            const new_plant_entry = document.createElement('div')
+            const clone_cut = document.querySelector('.delete_cut').cloneNode(true);
+            const clone_preview = document.querySelector('.plant_preview').cloneNode(true);
+            new_plant_entry.appendChild(clone_cut)
+            new_plant_entry.appendChild(clone_preview)
+            new_plant_entry.classList.add('plant_entry', 'new_plant_entry', `entry_${document.querySelectorAll('.plant_entry').length+1}`)
+            new_plant_entry.querySelector('.plantName').innerHTML = formData.get('name')
+            new_plant_entry.querySelector('.plantStage').innerHTML = plant_stage_name + ' stage'
+            entry_container.appendChild(new_plant_entry);
+
+            post_entry_container.style.display = 'none'
+            growLeaf(`.new_plant_entry.entry_${document.querySelectorAll('.plant_entry').length}`);
+
+            //add plant entry to entries
             if(formData.get('image') === null){
                 console.log('nothing here')
             }
@@ -192,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST'
                 ,body: formData
             });
+
+            // stallReload(50);
             location.reload();
         }else{
             denied_post.style.display = 'block';
@@ -327,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             ,stageID: plant_stage
                         }
                         updatePlantPost(updatedPost)
-                        stallReload()
+                        stallReload(200)
 
                     })
                 })
@@ -355,11 +395,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // keep a post open for comment to load
-    if(sessionStorage.getItem('viewPost') != 'close'){
+    if(sessionStorage.getItem('viewPost') === 'close'){
+        planted_container.style.display = 'none';
+    }else if(typeof(sessionStorage.getItem('viewPost')) != typeof(null) ){
         planted_container.style.display = 'flex';
         document.querySelector(sessionStorage.getItem('viewPost')).style.display = 'block';
-    }else{
-        planted_container.style.display = 'none';
     }
     // POST a comment
     const comment_input = document.querySelectorAll('.create_comment');
@@ -382,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ,body: JSON.stringify(post_comment)
                     });
                     
-                    stallReload()
+                    stallReload(200)
                 }
                 comment_input_button.addEventListener('click', submit_comments)
                 comment_input_button.addEventListener('keypress', (e) => {
@@ -403,25 +443,24 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // wait to reload
-    const stallReload = () => {
+    const stallReload = (delay) => {
         setTimeout(() => {
             location.reload();
-        }, 200)
+        }, delay)
     }
 
     //mobile sort by stage
     const cate_stage_container = document.querySelector('.cate_container');
     const cate_dropdown = document.querySelector('.cate_dropdown');
-    const cate = document.querySelectorAll('.cate');
     stage_button.innerHTML = 'None';
     cate_dropdown.addEventListener('click', () => {
         cate_stage_container.style.display = 'flex';
     })
     let curr_mob_stage;
+
     cate.forEach(stage => {
         stage.addEventListener('click', () => {
-            
-            cate.forEach(stage => {stage.classList.remove('selected_cate')})
+            setSelectedMob(stage.innerHTML)
             stage.classList.add('selected_cate')
             if(stage.innerHTML === 'None'){
                 curr_mob_stage.value = true;
@@ -438,6 +477,23 @@ document.addEventListener('DOMContentLoaded', () => {
     cate_stage_container.addEventListener('click', () => {
        cate_stage_container.style.display = 'none'
     })
+
+    //GSAP animation
+    // gsap.registerPlugin(Flip)
+    
+    // Delete animation
+    const dropLeaf = (entryClassNum) => {
+        let leaf = gsap.timeline();
+        let rotateAngle = (entryClassNum.slice(-1)%2===0) ? -1 : 1; 
+        leaf.to(entryClassNum, {duration: .5, rotate:30*rotateAngle, ease: "circ.out", y:50})
+            .to(entryClassNum, {duration: .5,rotate:0, ease: "circ.out", y:70, opacity: 0})
+    }
+
+    // Grow animation
+    const growLeaf = (entryClassNum) => {
+        let scaleAngle = (entryClassNum.slice(-1)%2===0) ? 'left bottom' : 'right bottom'
+        gsap.to(entryClassNum, {duration: 2, ease:"circ.out", opacity: 1, scale: 1, transformOrigin: scaleAngle})
+    }
 
 });
 
@@ -464,4 +520,4 @@ async function updatePlantPost(updatePost){
 }
 
 
-//gsap (del cut animation, post grow animation, snip sound effect), update README, make slides, upload to GLITCH and post on spreadsheet 
+//gsap, update README, make slides, upload to GLITCH and post on spreadsheet 
