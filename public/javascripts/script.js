@@ -171,18 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         post_entry_container.style.display = "none";
     })
 
-    // DELETE a plant entry
-    const cut_sfx = document.querySelector('.cut_sfx');
-    const cut_away = document.querySelectorAll('.delete_cut');
-    cut_away.forEach(entry => {
-        entry.addEventListener('click', () => {
-            deletePlantPosted(entry.parentElement.id)
-            dropLeaf(`.${entry.parentElement.classList[0]}.${entry.parentElement.classList[1]}`)
-            cut_sfx.play()
-            document.querySelector('body').style.cursor = 'wait'
-            stallReload(1500);
-        })
-    })
 
     //post plant entry
     const post_sfx = document.querySelector('.bubble_pop');
@@ -442,8 +430,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const del_comment = document.querySelectorAll('.del_comment');
     del_comment.forEach(comment => {
         comment.addEventListener('click', () => {
-            deleteComment(comment.parentElement.id)
-            stallReload()
+            deleteComments([comment.parentElement.id])
+            location.reload()
+        })
+    })
+
+    // DELETE a plant entry
+    const cut_sfx = document.querySelector('.cut_sfx');
+    const cut_away = document.querySelectorAll('.delete_cut');
+    cut_away.forEach(entry => {
+        entry.addEventListener('click', () => {
+            deletePlantPosted(entry.parentElement.id)
+            dropLeaf(`.${entry.parentElement.classList[0]}.${entry.parentElement.classList[1]}`)
+            cut_sfx.play()
+            document.querySelector('body').style.cursor = 'wait'
+            
+            const del_this_com = document.querySelector(`.planted.${entry.parentElement.classList[1]}`).querySelectorAll('.comment')
+            if(del_this_com.length > 0){
+                let del_com_list = []
+                del_this_com.forEach(comment => {
+                    del_com_list.push(comment.id)
+                })
+                deleteComments(del_com_list)
+            }
+            stallReload(1500);
         })
     })
 
@@ -506,9 +516,13 @@ async function deletePlantPosted(postID){
     })
 }
 
-async function deleteComment(commentID){
-    fetch('comments/' + commentID, {
-        method: 'DELETE'
+async function deleteComments(commentIDList){
+    fetch('comments/', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentIDList)
     })
 }
 

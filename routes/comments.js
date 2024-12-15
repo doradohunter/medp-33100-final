@@ -21,13 +21,18 @@ router.post('/', async function(req, res, next) {
     }
 });
 
-// DELETE comment
-router.delete('/:id', async function (req, res) {
+// DELETE comments
+router.delete('/', async function (req, res) {
   try {
       const db = req.app.locals.db;
-
+      const listOfComments = req.body
+      let newList = []
+      listOfComments.forEach(comment => {
+        newList.push(new ObjectId(comment))
+      })
+      console.log(newList)
       await db.collection('comments')
-          .deleteOne({_id: new ObjectId(req.params.id)});
+          .deleteMany({_id: { $in: newList }});
       res.send('Successfully deleted');
   } catch (error) {
       next(error);
