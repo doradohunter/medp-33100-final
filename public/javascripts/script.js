@@ -176,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cut_away = document.querySelectorAll('.delete_cut');
     cut_away.forEach(entry => {
         entry.addEventListener('click', () => {
-            pause_engagement = true;
             deletePlantPosted(entry.parentElement.id)
             dropLeaf(`.${entry.parentElement.classList[0]}.${entry.parentElement.classList[1]}`)
             cut_sfx.play()
@@ -231,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ,body: formData
             });
 
-            // stallReload(50);
             location.reload();
         }else{
             denied_post.style.display = 'block';
@@ -244,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const og_plant_stage_input = document.querySelector('.stage_drop')
     const plant_stage_input = og_plant_stage_input.cloneNode(true)
     // keep current/old information
-    let edit_icon, current_name, current_entry, current_stage, current_comment_section, clone_confirm_edit_button, editing;
+    let edit_icon, current_name, current_entry, current_stage, current_comment_subheader, current_comment_section, clone_confirm_edit_button, editing;
 
     // GET AND SET/RESET new values from edited changes (reseting changes are depreciated)
     let newPlantName, newPlantEntry = '';
@@ -287,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         content_comment.appendChild(current_comment_subheader);
         content_comment.appendChild(current_comment_section);
         const content_planted_entry = document.querySelector(`.planted.${entryNum}`);
+        content_planted_entry.querySelector('.comment_section').style.display = (save === true) ? 'none' : 'block';
         content_planted_entry.appendChild(clone_confirm_edit_button)
     }
 
@@ -299,81 +298,87 @@ document.addEventListener('DOMContentLoaded', () => {
             
             planted_container.style.display = 'flex';
             document.querySelector(`.planted.${entry.classList[1]}`).style.display = 'block'
-
-            allEditIcons.forEach(edit => {
-                edit.addEventListener('click', () => {
-                    editing = true;
-                    const thisPostID = edit.parentElement
-                    postID = document.querySelector(`.planted.${thisPostID.classList[1]}`).id
-
-                    //header elements
-                    const edit_plant_name = document.querySelector(`.plantedName.${thisPostID.classList[1]}`);
-                    const content_header = document.querySelector(`.header_edit_post.${thisPostID.classList[1]}`);
-                    //entry elements
-                    const edit_plant_entry = document.querySelector(`.plantEntry.${thisPostID.classList[1]}`);
-                    const content_entry = document.querySelector(`.entry_edit_post.${thisPostID.classList[1]}`);
-                    //stage elements
-                    const edit_stage_entry = document.querySelector(`.plantStage.${thisPostID.classList[1]}`);
-                    const content_stage = document.querySelector(`.stage_edit_post.${thisPostID.classList[1]}`);
-                    //comment elements
-                    const confirm_edit_button = document.querySelector(`.confirm_edit_button.${thisPostID.classList[1]}`)
-                    const comment_section = document.querySelector(`.comment_entry_section.${thisPostID.classList[1]}`)
-                    //keep current data
-                    edit_icon = content_header.querySelector('.edit_icon').cloneNode(true);
-                    current_name = edit_plant_name.innerHTML;
-                    current_entry = edit_plant_entry.innerHTML;
-                    current_stage = edit_stage_entry.innerHTML;
-                    current_comment_subheader = comment_section.querySelector('.subheader');
-                    current_comment_section = comment_section.querySelector('.add_comment');
-                    clone_confirm_edit_button = confirm_edit_button.cloneNode(true);
-                    
-                    //edit post header
-                    const plant_official_name_input = document.createElement('input');
-                    plant_official_name_input.classList.add('newPlantName');
-                    plant_official_name_input.value = current_name;
-                    content_header.innerHTML = '';
-                    content_header.appendChild(plant_official_name_input);
-
-                    //edit post entry
-                    const plant_entry_input = document.createElement('textarea');
-                    plant_entry_input.classList.add('newPlantEntry')
-                    plant_entry_input.value = current_entry;
-                    content_entry.innerHTML = '';
-                    content_entry.appendChild(plant_entry_input);
-
-                    //edit entry stage
-                    content_stage.innerHTML = '';
-                    plant_stage_input.classList.add('edit_stage')
-                    plant_stage_input.value = current_stage
-                    plant_stage = plant_stage_input[plant_stage_input.selectedIndex].id
-                    content_stage.appendChild(plant_stage_input)
-                    
-                    content_stage.addEventListener('click', () => {
-                        plant_stage_name = plant_stage_input[plant_stage_input.selectedIndex].innerHTML
-                        plant_stage = plant_stage_input[plant_stage_input.selectedIndex].id
-                    })
-                    //put save changes button
-                    comment_section.innerHTML = ''
-                    comment_section.appendChild(confirm_edit_button)
-                    confirm_edit_button.style.display = 'flex';
-                    
-                    //confirm changes
-                    confirm_edit_button.addEventListener('click', () => {
-                        getandputEdits(thisPostID.classList[1], true)
-                        const updatedPost = {
-                            postID: postID
-                            ,name: newPlantName
-                            ,entry: newPlantEntry
-                            ,stageID: plant_stage
-                        }
-                        updatePlantPost(updatedPost)
-                        stallReload(200)
-
-                    })
-                })
-            })
         })
     })
+
+    // EDIT view post
+    allEditIcons.forEach(edit => {
+        edit.addEventListener('click', () => {
+            editing = true;
+            const thisPostID = edit.parentElement
+            postID = document.querySelector(`.planted.${thisPostID.classList[1]}`).id
+
+            //header elements
+            const edit_plant_name = document.querySelector(`.plantedName.${thisPostID.classList[1]}`);
+            const content_header = document.querySelector(`.header_edit_post.${thisPostID.classList[1]}`);
+            //entry elements
+            const edit_plant_entry = document.querySelector(`.plantEntry.${thisPostID.classList[1]}`);
+            const content_entry = document.querySelector(`.entry_edit_post.${thisPostID.classList[1]}`);
+            //stage elements
+            const edit_stage_entry = document.querySelector(`.plantStage.${thisPostID.classList[1]}`);
+            const content_stage = document.querySelector(`.stage_edit_post.${thisPostID.classList[1]}`);
+            //comment elements
+            const confirm_edit_button = document.querySelector(`.confirm_edit_button.${thisPostID.classList[1]}`)
+            const comment_section = document.querySelector(`.comment_entry_section.${thisPostID.classList[1]}`)
+            //keep current data
+            edit_icon = content_header.querySelector('.edit_icon');
+            current_name = edit_plant_name.innerHTML;
+            current_entry = edit_plant_entry.innerHTML;
+            current_stage = edit_stage_entry.innerHTML;
+            current_comment_subheader = comment_section.querySelector('.subheader');
+            current_comment_section = comment_section.querySelector('.add_comment');
+            clone_confirm_edit_button = confirm_edit_button.cloneNode(true);
+            
+            //edit post header
+            const plant_official_name_input = document.createElement('input');
+            plant_official_name_input.classList.add('newPlantName');
+            plant_official_name_input.value = current_name;
+            content_header.innerHTML = '';
+            content_header.appendChild(plant_official_name_input);
+
+            //edit post entry
+            const plant_entry_input = document.createElement('textarea');
+            plant_entry_input.classList.add('newPlantEntry')
+            plant_entry_input.value = current_entry;
+            content_entry.innerHTML = '';
+            content_entry.appendChild(plant_entry_input);
+
+            //edit entry stage
+            content_stage.innerHTML = '';
+            plant_stage_input.classList.add('edit_stage')
+            plant_stage_input.value = current_stage
+            plant_stage = plant_stage_input[plant_stage_input.selectedIndex].id
+            content_stage.appendChild(plant_stage_input)
+            
+            content_stage.addEventListener('click', () => {
+                plant_stage_name = plant_stage_input[plant_stage_input.selectedIndex].innerHTML
+                plant_stage = plant_stage_input[plant_stage_input.selectedIndex].id
+            })
+
+            //hide comment_section
+            document.querySelector(`.planted.${thisPostID.classList[1]}`).querySelector('.comment_section').style.display = 'none'
+
+            //put save changes button
+            comment_section.innerHTML = ''
+            comment_section.appendChild(confirm_edit_button)
+            confirm_edit_button.style.display = 'flex';
+            
+            //confirm changes
+            confirm_edit_button.addEventListener('click', () => {
+                getandputEdits(thisPostID.classList[1], true)
+                const updatedPost = {
+                    postID: postID
+                    ,name: newPlantName
+                    ,entry: newPlantEntry
+                    ,stageID: plant_stage
+                }
+                updatePlantPost(updatedPost)
+                stallReload(200)
+
+            })
+        })
+    }) 
+
 
     // CLOSE viewing post
     const allPostedEntires = document.querySelectorAll('.planted')
