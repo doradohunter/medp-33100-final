@@ -1,24 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // //create an account and add a new author
-    // const newAccountForm = document.querySelector('#new-account')
-    // newAccountForm.addEventListener('submit', () => {
+    //search
+    const searchForm = document.querySelector('#searchBar')
+    searchForm.addEventListener('submit', async (e)=>{
+        e.preventDefault();
 
-    //     const formData = new FormData(newAccountForm);
+        const formData = new FormData(searchForm)
+        const searchInput = formData.get('searchText')
 
-    //     const formDataObject = {
-    //         username: formData.get('usernameInput'),
-    //         email: formData.get('emailInput')
-    //     }
+        const newEntries = await getEntries(searchInput);    
 
-    //     fetch('/authors', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(formDataObject)
-    //     })
-    // })
+        displayEntries(newEntries)
+    })
+
+    // entry pop up button
+    const entryButton = document.querySelector('#entryButton')
+    const entryContainer = document.querySelector('#newEntryContainer')
+    entryButton.addEventListener('click', ()=>{
+        entryContainer.style.display='block'
+    })
+
+    //click cancel button to close entry form
+    const cancelEntry = document.querySelector('#entryCancel')
+    cancelEntry.addEventListener('click', ()=>{
+        entryContainer.style.display='none'
+    })
+
+    window.addEventListener('click', (event)=>{
+        if (event.target == entryContainer) {
+            entryContainer.style.display='none'
+        }
+    })
 
     //create a new entry
     const newEntryForm = document.querySelector('#new-entry')
@@ -132,6 +144,38 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         })
     });
+
+    function displayEntries(entries) {
+        const container = document.querySelector('.container');
+        container.innerHTML = '';
+        entries.forEach(entry => {
+            const entryElement = document.createElement('div');
+            entryElement.classList.add('entry');
+            entryElement.id = entry._id;
+            entryElement.innerHTML = `
+                <div class="top_line">
+                    <h3 class="game_name">${entry.game_name}</h3>
+                    <button class="delete_button">Delete</button><br>   
+                </div>
+                <div class="game_image">
+                    <img class="game_image_url" alt="image of ${entry.game_name}" src="${entry.image_url}">
+                </div>
+                <p class="author">by <span class="author_text">${entry.author}</span></p>
+                <p class="date">Created On: ${entry.date_created}</p>
+                <p class="platform">Played On: <span class="platform_text">${entry.platform}</span></p>
+                <p class="entry_text">${entry.entry_text}</p>
+                <button class="edit_button">Edit</button>
+            `;
+            container.appendChild(entryElement);
+        })
+    }
+
+    async function getEntries(searchParams) {
+        const response = await fetch ('/entries?search=' + searchParams)
+        const entries = await response.json()
+
+        return entries
+    }
 
     async function updateEntry(info) {
         fetch('/entries', {

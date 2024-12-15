@@ -3,8 +3,48 @@ var router = express.Router();
 const { ObjectId, Timestamp } = require('mongodb')
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
+router.get('/', async function (req, res, next) {
+    try {
+        console.log(req.query.search)
+        const db = req.app.locals.db;
+        const entries = await db.collection('entries')
+            .aggregate([
+                {
+                    $match: {
+                        $or: [
+                            {game_name: { $regex: req.query.search, $options: 'i' }},
+                            {author: { $regex: req.query.search, $options: 'i' }},
+                            {date_created: { $regex: req.query.search, $options: 'i' }},
+                            {platform: { $regex: req.query.search, $options: 'i' }},
+                            {entry_text: { $regex: req.query.search, $options: 'i' }}
+                        ]
+                    }
+                },
+                {
+                    $sort: {
+                        date_created: -1
+                }
+                
+                },
+                {
+                    $project: {
+                        date_created: { $toDate: "$date_created" },
+                        date_created: {$dateToString: {format: '%b %d %Y', date: '$date_created'}},
+                        game_name: 1,
+                        author: 1,
+                        image_url: 1,
+                        platform: 1,
+                        entry_text: 1
+                    }
+                }
+            ])
+            .toArray();
+        
+            res.json(entries)
+        } catch (error) {
+            console.log('error!');
+            res.status(500).send('An error occurred');
+        }
 });
 
 router.post('/', async function (req, res) {
