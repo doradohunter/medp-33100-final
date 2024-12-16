@@ -30,7 +30,7 @@ router.get('/', async function (req, res, next) {
       ])
       .toArray();
 
-    res.render('index', { title: 'Gaming Journal', entries: entries});
+    res.render('index', { title: 'gaming journal', entries: entries});
   } catch (error) {
     console.log('error!');
     res.status(500).send('An error occurred');

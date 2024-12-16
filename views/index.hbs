@@ -1,5 +1,7 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="intro">
+    <h1>{{title}}</h1>
+    <p>share your memories with games</p>
+</div>
 
 <div id="newEntryContainer">
     <form id="new-entry">
@@ -23,12 +25,15 @@
     </form> 
 </div>
 
-<form id="searchBar">
-    <label class="bold" for="searchText">Search:</label>
-    <input type="search" id="searchText" name="searchText" placeholder="search terms">
-    <input id="searchSubmit" type="submit" value="Submit">
-</form>
-<button id="entryButton">Add a New Entry</button>
+<div id="searchEntry">
+    <form id="searchBar">
+        <label class="bold" for="searchText">Search:</label>
+        <input type="search" id="searchText" name="searchText" placeholder="search terms">
+        <input id="searchSubmit" type="submit" value="Submit">
+    </form>
+    <button id="entryButton">Add a New Entry</button>
+</div>
+
 <div class="container">
     {{#each entries}}
         <div class="entry" id="{{this._id}}">
