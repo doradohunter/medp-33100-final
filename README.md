@@ -53,7 +53,6 @@
 ## **Future Enhancements**
 
 - List of future enhancements I would like to make or improve given more time.
-  - Implement comment dependent fruit development
   - Connect an API that provides planting benefits and information (guide people on their planting journey step by step) 
   - Be able to change posted entry images
   - Refine sort by function
