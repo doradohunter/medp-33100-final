@@ -248,7 +248,141 @@ main{
     overflow-y: auto;
 }
 
-.plant_entry:nth-child(odd){
+/* test fruit! */
+/* .e{
+    width: 20%;
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    transition: .3s ease;
+    margin-bottom: 5%;
+}
+.p_e{
+    background-color: #D4E8DE;
+    font-size: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    transition: .3s ease;
+}
+.p_e:hover{
+    background-color: #8BABF1;
+}
+.e:nth-child(odd) .p_e{
+    flex-direction: row-reverse;
+}
+.e:nth-child(odd) .p_e, .e:nth-child(odd) .plant_preview{
+    border-bottom-left-radius: 100px;
+}
+.e:nth-child(odd) .p_e, .e:nth-child(odd) .d_c{
+    border-top-right-radius: 100px;
+}
+.e:nth-child(even) .f{
+    align-self: flex-start;
+    margin-left: 20%;
+}
+.e:nth-child(even) .p_e, .e:nth-child(even) .plant_preview{
+    border-bottom-right-radius: 100px;
+}
+.e:nth-child(even) .p_e, .e:nth-child(even) .d_c{
+    border-top-left-radius: 100px;
+}
+.e:nth-child(odd) .f{
+    align-self: flex-end;
+    margin-right: 20%;
+}
+.d_c{
+    background-color: #D4E8DE;    
+    padding: 5% 10%;
+    transition: .3s ease;
+}
+.d_c:hover{
+    background-color: #FAAF90;
+}
+.f{
+    transition: .3s ease;
+    width: 70px;
+    height: 70px;
+    padding: 2%;
+    background-image: url("https://res.cloudinary.com/doqunjdxq/image/upload/v1734304166/fruit_qryydc.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+} */
+
+.entry{
+    width: 20%;
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    transition: .3s ease;
+    margin-bottom: 5%;
+}
+.plant_entry{
+    background-color: #D4E8DE;
+    font-size: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    transition: .3s ease;
+}
+.plant_entry:hover{
+    background-color: #8BABF1;
+}
+.entry:nth-child(odd) .plant_entry{
+    flex-direction: row-reverse;
+}
+.entry:nth-child(odd) .plant_entry, .entry:nth-child(odd) .plant_preview{
+    border-bottom-left-radius: 100px;
+}
+.entry:nth-child(odd) .plant_entry, .entry:nth-child(odd) .delete_cut{
+    border-top-right-radius: 100px;
+}
+.entry:nth-child(even) .fruit{
+    align-self: flex-start;
+    margin-left: 20%;
+}
+.entry:nth-child(even) .plant_entry, .entry:nth-child(even) .plant_preview{
+    border-bottom-right-radius: 100px;
+}
+.entry:nth-child(even) .plant_entry, .entry:nth-child(even) .delete_cut{
+    border-top-left-radius: 100px;
+}
+.entry:nth-child(odd) .fruit{
+    align-self: flex-end;
+    margin-right: 20%;
+}
+.delete_cut{
+    background-color: #D4E8DE;    
+    padding: 5% 10%;
+    transition: .3s ease;
+}
+.delete_cut:hover{
+    background-color: #FAAF90;
+}
+.fruit{
+    transition: .3s ease;
+    padding: 2%;
+    background-image: url("https://res.cloudinary.com/doqunjdxq/image/upload/v1734304166/fruit_qryydc.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none;
+}
+.showFruit{
+    display: block;
+}
+/* min-max height
+    10px-70px
+*/
+
+.new_plant_entry{
+    opacity: 0%;
+    scale: 0;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* realshit pls del this */
+/* .plant_entry:nth-child(odd){
     flex-direction: row-reverse;
 }
 .plant_entry:nth-child(odd), .plant_entry:nth-child(odd) .plant_preview{
@@ -263,7 +397,6 @@ main{
 .plant_entry:nth-child(even), .plant_entry:nth-child(even) .delete_cut{
     border-top-left-radius: 100px;
 }
-
 .plant_entry{
     width: 20%;
     background-color: #D4E8DE;
@@ -273,17 +406,6 @@ main{
     display: flex;
     transition: .3s ease;
     margin-bottom: 5%;
-}
-.new_plant_entry{
-    opacity: 0%;
-    scale: 0;
-    cursor: default;
-    pointer-events: none;
-}
-.plant_preview{
-    text-align: -webkit-center;
-    align-self: center;
-    pointer-events: auto;
 }
 .plant_entry:hover{
     background-color: #8BABF1;
@@ -295,6 +417,11 @@ main{
 } 
 .delete_cut:hover{
     background-color: #FAAF90;
+} */
+
+.plant_preview{
+    text-align: -webkit-center;
+    align-self: center;
 }
 .plantName{
     width: 15vw;
@@ -476,7 +603,8 @@ textarea, .create_comment{
     overflow-y: auto;
     scrollbar-color: #D4E8DE #FAAF90;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    margin-top: 2%;
 }
 .comment{
     display: flex;
@@ -562,7 +690,7 @@ small:not(.instruction){
     .entry_stage_options{
         display:none;
     }
-    .stage_drop{
+    .stage_drop:not(.edit_stage){
         display: block;
         margin-bottom: 5%; 
         text-align: center;

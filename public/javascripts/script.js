@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const entry_container = document.querySelector('.plant_structure')
     const stage_categories = document.querySelectorAll('.category');
     const stage_options = document.querySelectorAll('.stage_option');
-    const plantEntries = document.querySelectorAll('.plant_entry')
+    const plantEntries = document.querySelectorAll('.entry')
 
     //mobile category
     const stage_button = document.querySelector('.cate_stage')
@@ -194,15 +194,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // grow a temp new entry leaf
             post_sfx.play();
+            const new_entry = document.createElement('div')
+            new_entry.classList.add('entry')
             const new_plant_entry = document.createElement('div')
             const clone_cut = document.querySelector('.delete_cut').cloneNode(true);
             const clone_preview = document.querySelector('.plant_preview').cloneNode(true);
+            new_entry.appendChild(new_plant_entry)
             new_plant_entry.appendChild(clone_cut)
             new_plant_entry.appendChild(clone_preview)
             new_plant_entry.classList.add('plant_entry', 'new_plant_entry', `entry_${document.querySelectorAll('.plant_entry').length+1}`)
             new_plant_entry.querySelector('.plantName').innerHTML = formData.get('name')
             new_plant_entry.querySelector('.plantStage').innerHTML = plant_stage_name + ' stage'
-            entry_container.appendChild(new_plant_entry);
+            entry_container.appendChild(new_entry);
 
             post_entry_container.style.display = 'none'
             growLeaf(`.new_plant_entry.entry_${document.querySelectorAll('.plant_entry').length}`);
@@ -418,11 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     stallReload(200)
                 }
                 comment_input_button.addEventListener('click', submit_comments)
-                comment_input_button.addEventListener('keypress', (e) => {
-                    if(e.key == 'Enter'){
-                        submit_comments()
-                    }
-                })
             }
         })
     })
@@ -441,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cut_away.forEach(entry => {
         entry.addEventListener('click', () => {
             deletePlantPosted(entry.parentElement.id)
-            dropLeaf(`.${entry.parentElement.classList[0]}.${entry.parentElement.classList[1]}`)
+            dropLeaf(`.plant_entry.${entry.parentElement.classList[1]}`, `.fruit.${entry.parentElement.classList[1]}`)
             cut_sfx.play()
             document.querySelector('body').style.cursor = 'wait'
             
@@ -495,11 +493,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //GSAP animation
     // Delete animation
-    const dropLeaf = (entryClassNum) => {
+    const dropLeaf = (entryClassNum, fruitClassNum) => {
         let leaf = gsap.timeline();
         let rotateAngle = (entryClassNum.slice(-1)%2===0) ? -1 : 1; 
-        leaf.to(entryClassNum, {duration: .5, rotate:30*rotateAngle, ease: "circ.out", y:50})
-            .to(entryClassNum, {duration: .5,rotate:0, ease: "circ.out", y:70, opacity: 0})
+        leaf.to(fruitClassNum, {duration: .5, rotate: 90*rotateAngle, ease: "circ.out", y: 50})
+            .to(fruitClassNum, {duration: .5, rotate: 180*rotateAngle, ease: "circ.out", y: 70, opacity: 0})
+            .to(entryClassNum, {duration: .5, rotate: 30*rotateAngle, ease: "circ.out", y: 50})
+            .to(entryClassNum, {duration: .5, rotate: 0, ease: "circ.out", y: 70, opacity: 0})
     }
 
     // Grow animation
@@ -507,6 +507,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let scaleAngle = (entryClassNum.slice(-1)%2===0) ? 'left bottom' : 'right bottom'
         gsap.to(entryClassNum, {duration: 2, ease:"circ.out", opacity: 1, scale: 1, transformOrigin: scaleAngle})
     }
+
+    plantEntries.forEach(entry => {
+        let commentNum = document.querySelector(`.planted.${entry.classList[1]}`).querySelectorAll('.comment').length;
+        if(commentNum > 0){
+            let entry_fruit = document.querySelector(`.fruit.${entry.classList[1]}`)
+            entry_fruit.classList.add('showFruit');
+            let fruit_size = (commentNum > 10) ? 70 : 20 + (commentNum*5)
+            entry_fruit.style.width = `${fruit_size}px`
+            entry_fruit.style.height = `${fruit_size}px`
+        }
+    })
+
 
 });
 
