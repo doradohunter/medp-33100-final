@@ -41,6 +41,7 @@
   - "Bubble Pop" by [YehawSnail](https://freesound.org/people/YehawSnail/sounds/683587/)
 - Images (Sources vary due to user input)
   - Some images are from Unsplash.com
+  - Illustrations done by Judy Zhang
 - Fonts from Google Fonts
   - "Oleo Script Swash Caps" by [soytype fonts](https://fonts.google.com/specimen/Oleo+Script+Swash+Caps)
   - "Rethink Sans" by [Hans Thiessen](https://fonts.google.com/specimen/Rethink+Sans)
