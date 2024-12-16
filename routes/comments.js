@@ -30,7 +30,6 @@ router.delete('/', async function (req, res) {
       listOfComments.forEach(comment => {
         newList.push(new ObjectId(comment))
       })
-      console.log(newList)
       await db.collection('comments')
           .deleteMany({_id: { $in: newList }});
       res.send('Successfully deleted');

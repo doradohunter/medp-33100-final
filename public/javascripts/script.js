@@ -513,9 +513,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if(commentNum > 0){
             let entry_fruit = document.querySelector(`.fruit.${entry.classList[1]}`)
             entry_fruit.classList.add('showFruit');
-            let fruit_size = (commentNum > 10) ? 70 : 20 + (commentNum*5)
-            entry_fruit.style.width = `${fruit_size}px`
-            entry_fruit.style.height = `${fruit_size}px`
+            // let fruit_size = (commentNum > 10) ? 70 : 20 + (commentNum*5)
+            // entry_fruit.style.width = `${fruit_size}px`
+            // entry_fruit.style.height = `${fruit_size}px`
+            let fruit_size = (2 + (commentNum*2) > 10) ? 10 : 2 + (commentNum*0.5)
+            entry_fruit.style.width = `${fruit_size}vw`
+            entry_fruit.style.height = `${fruit_size}vw`
         }
     })
 
