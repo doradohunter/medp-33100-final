@@ -46,9 +46,17 @@ body,
 
 .week-buttons > button:hover {
   cursor: pointer;
-  background-color: #777777;
+  background-color: #555555;
 }
 
 .diary {
   background-color: #777777;
+}
+
+.diary > div {
+  margin: 5vh auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
