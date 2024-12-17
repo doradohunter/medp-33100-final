@@ -1,4 +1,4 @@
-const weeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const weeks = ['All', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 function weekButtons() {
   const weekButtonSection = document.querySelector('.week-buttons');
@@ -11,6 +11,7 @@ function weekButtons() {
     weekButtonSection.appendChild(button);
 
     button.addEventListener('click', () => {
+      resetColors();
       filterDays(button, day);
     });
   })
@@ -23,8 +24,21 @@ function filterDays(button, day) {
     eachInput.style.display = '';
 
     if (!eachInput.classList.contains(day) && button.classList.contains(day)) {
+      button.style.backgroundColor = '#777777';
       eachInput.style.display = 'none';
     }
+
+    if (button.classList.contains('All')) {
+      eachInput.style.display = '';
+    }
+  })
+}
+
+function resetColors() {
+  const week = document.querySelectorAll('.day');
+
+  week.forEach((day) => {
+    day.style.backgroundColor = '#1e1e1e'
   })
 }
 
