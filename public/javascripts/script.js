@@ -42,4 +42,45 @@ function resetColors() {
   })
 }
 
+function showForm() {
+  const form = document.getElementById('add-entry');
+  const addButton = document.querySelector('.add-more-button');
+
+  addButton.addEventListener('click', () => {
+    form.style.display = '';
+  })
+}
+
+function addEntry() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('add-entry');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('submitted');
+
+      const formData = new FormData(form);
+
+      const formDataObject = {
+        title: formData.get('title'),
+        memory: formData.get('memory'),
+        authorId: '67589ab2c23df25a12718523',
+        day: formData.get('weekday'),
+      }
+
+      console.log(formDataObject);
+
+      fetch('/memory', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formDataObject)
+      })
+    })
+  })
+}
+
 weekButtons();
+showForm();
+addEntry();

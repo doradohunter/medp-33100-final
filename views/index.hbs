@@ -4,7 +4,7 @@
   </div>
   <div class="heading">
     <h1>Weekly Diary</h1>
-    <button class="add-more">+</button>
+    <button class="add-more-button">+</button>
   </div>
   <div class='diary'>
     <div>
@@ -23,21 +23,21 @@
     </div>
   </div>
 
-  <form id="add-entry">
+  <form id="add-entry" style="display: none;">
     <h2>Create new diary entry</h2>
     <label for="memory-title">Memory Title</label>
-    <input type="text" placeholder="title" id="memory-title">
+    <input type="text" name="title" placeholder="title" id="memory-title">
     <label for="memory">Memory</label>
-    <input type="text" placeholder="memory">
+    <textarea name="memory" id="memory" cols="30" rows="10"></textarea>
     <label for="weekday">Weekday</label>
     <select name="weekday" id="weekday">
-      <option value="sunday">Sunday</option>
-      <option value="monday">Monday</option>
-      <option value="tuesday">Tuesday</option>
-      <option value="wednesday">Wednesday</option>
-      <option value="thursday">Thursday</option>
-      <option value="friday">Friday</option>
-      <option value="saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
     </select>
     <input type="submit" value="submit">
   </form>

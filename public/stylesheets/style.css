@@ -62,7 +62,7 @@ body,
   gap: 20px;
 }
 
-.add-more {
+.add-more-button {
   font-size: 2rem;
   border: none;
   color: white;
@@ -71,7 +71,7 @@ body,
   width: 5vw;
 }
 
-.add-more:hover {
+.add-more-button:hover {
   cursor: pointer;
 }
 
