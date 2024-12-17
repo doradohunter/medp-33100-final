@@ -18,6 +18,7 @@
     - APIs
     - Libraries
     - Other
+    - https://www.magicpattern.design/tools/css-backgrounds
  
 ## **Live Demo**
 
@@ -27,6 +28,7 @@
 
 - List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
 - Acknowledge any resources, tutorials, or references you used to help complete the project.
+- 
 
 ## **Future Enhancements**
 
