@@ -2,11 +2,11 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- A personal diary for user to capture and revisit their most cherished moments.
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Jessica Xia
 
 ## **Features**
 
@@ -15,9 +15,8 @@
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
+    - Express
+    - Mongodb
  
 ## **Live Demo**
 
