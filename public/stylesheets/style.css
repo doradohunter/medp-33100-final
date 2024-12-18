@@ -400,7 +400,7 @@ textarea, .create_comment{
     display: flex;
     justify-content: space-evenly;
 }
-.stage_option{
+.stage_option, .sel_opt_drop{
     margin-top: 0px;
     background-color: #D4E8DE;
     padding: .5% 2%;
