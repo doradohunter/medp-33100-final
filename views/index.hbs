@@ -1,2 +1,43 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<body>
+    <div class="header">
+        <img src="../images/logo.svg" alt="Just4Kicks_logo_svg" class="logo">
+        <h1 class="title">Just 4 Kicks</h1>
+        <ul>
+            <li class="SignIn"><a href="">Sign in</a></li>
+        </ul>
+    </div>
+    <main>
+        <nav>
+            <ul class="navigation">
+                <li class="all">All</li>
+                <li class="Nike">Nike</li>
+                <li class="Jordan">Jordan</li>
+                <li class="Adidas">Adidas</li>
+                <li class="New_Balance">New Balance</li>
+                <li class="Other">Other</li>
+            </ul>
+        </nav>
+        <div class="create_post">
+            <img class="add_post" src="../images/add_icon_4.svg" alt="">
+        </div>
+        <div class="posts">
+            {{#each posts}}
+            <div class="post">
+                <img class="post_img" src="shoes/tweed.jpeg" alt="">
+                <h3 class="post_title">{{this.title}}</h3>
+                <h3 class="post_story">{{this.story}}
+                </h3>
+            </div>
+            {{/each}}
+        </div>
+        <form class="create">
+            <h3 class="img_text">Image link</h3><input type="text" class="image" name="image">
+            <h3 class="title_text">Post: Title</h3><input type="text" class="title" name="title">
+            <h3 class="story_text">Story</h3><input type="text" class="story" name="story">
+            <h3 class="brand_text">brand</h3><input type="text" class="story" name="brand">
+            <input type="submit" value="Add to blog"/>
+
+
+        </form>
+    </main>
+</body>
