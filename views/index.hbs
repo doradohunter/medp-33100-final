@@ -20,8 +20,8 @@
 
         <p><label class="bold" for="bodyInput">What do you want to say?:</label></p>
         <textarea id="bodyInput" name="bodyInput" rows="4" cols="50">Insert Journal Entry Here!</textarea><br><br>
-        <input id="entryCancel" type="button" value="Cancel">
-        <input id="entrySubmit" type="submit" value="Submit">
+        <input class="entryButtons" id="entryCancel" type="button" value="Cancel">
+        <input class="entryButtons" id="entrySubmit" type="submit" value="Submit">
     </form> 
 </div>
 
@@ -29,9 +29,9 @@
     <form id="searchBar">
         <label class="bold" for="searchText">Search:</label>
         <input type="search" id="searchText" name="searchText" placeholder="search terms">
-        <input id="searchSubmit" type="submit" value="Submit">
+        <input class="buttons" id="searchSubmit" type="submit" value="Submit">
     </form>
-    <button id="entryButton">Add a New Entry</button>
+    <button class="buttons" id="entryButton">Add a New Entry</button>
 </div>
 
 <div class="container">
@@ -39,7 +39,7 @@
         <div class="entry" id="{{this._id}}">
             <div class="top_line">
                 <h3 class="game_name">{{this.game_name}}</h3>
-                <button class="delete_button">Delete</button><br>   
+                <button class="delete_button">Delete</button>  
             </div>
             <div class="game_image">
                 <img class="game_image_url" alt="image of {{this.game_name}}" src="{{this.image_url}}">
@@ -48,7 +48,7 @@
             <p class="date">Created On: {{this.date_created}}</p>
             <p class="platform">Played On: <span class="platform_text">{{this.platform}}</span></p>
             <p class="entry_text">{{this.entry_text}}</p>
-            <button class="edit_button">Edit</button>
+            <button class="edit_button buttons">Edit</button>
         </div>
     {{/each}}
 </div>

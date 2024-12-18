@@ -1,10 +1,8 @@
 body {
   padding: 50px;
   font: 20px "Pixelify Sans", sans-serif;
-  background-color: #FAF9F6;
-  opacity: 1;
-  background-image:  linear-gradient(#eee 1.8px, transparent 1.8px), linear-gradient(to right, #eee 1.8px, #FAF9F6 1.8px);
-  background-size: 36px 36px;
+  background-image: url('/images/blue_pixel_rain.jpg');
+  color: white;
 }
 
 a {
@@ -13,8 +11,9 @@ a {
 
 button {
   width: fit-content;
-  /* height: fit-content; */
+  height: 25px;
   font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
 }
 
 .bold {
@@ -35,6 +34,14 @@ button {
   margin: 20px 0px;
 }
 
+.buttons{
+  background-color: transparent;
+  border: white 2px solid;
+  color: white;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+}
+
 #newEntryContainer {
   position: fixed;
   z-index: 1;
@@ -52,7 +59,17 @@ button {
   margin: auto;
   width: 50%;
   padding: 10px;
-  border: 3px solid black;
+  color: black;
+}
+
+.entryButtons{
+  width: fit-content;
+  height: 25px;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+  background-color: transparent;
+  border: solid 2px black;
+  color: black;
 }
 
 .container {
@@ -63,11 +80,29 @@ button {
   margin: auto;
 }
 
+.entry {
+  width: 350px;
+  /* height: 400px; */
+  border: 3px solid white;
+  padding: 10px;
+  background-color: transparent;
+}
+
 .top_line {
   display: flex;
   justify-content: space-between;
   padding: 5px;
   margin-bottom: 15px;
+}
+
+.delete_button{
+  position: relative;
+  top: 28px;
+  color: red;
+  background-color: transparent;
+  border: white 2px solid;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
 }
 
 .game_name {
@@ -76,13 +111,28 @@ button {
   font-weight: 700;
 }
 
-.entry {
-  width: 350px;
-  /* height: 400px; */
-  border: 3px dotted limegreen;
-  padding: 10px;
-}
-
 .game_image_url {
   width: 100%;
+}
+
+@media (max-width: 800px) {
+  .container, #searchEntry {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #searchEntry{
+    text-align: center;
+  }
+
+  #entryButton{
+    align-self: center;
+    margin-top: 15px;
+  }
+
+  #new-entry{
+    width: 75%;
+
+  }
 }

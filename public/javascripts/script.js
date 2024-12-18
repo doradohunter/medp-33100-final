@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //edit platform
             const platform = entry.querySelector(".platform_text");   
             const platformEdit = document.createElement('input');
-            platformEdit.value = username.innerText;
+            platformEdit.value = platform.innerText;
             platform.innerHTML="";
             platform.appendChild(platformEdit);
 

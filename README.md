@@ -28,7 +28,8 @@
 
 - List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
 - Acknowledge any resources, tutorials, or references you used to help complete the project.
-- 
+- <a href="https://www.freepik.com/free-vector/pixel-rain-abstract-background_6072170.htm#from_view=detail_alsolike">Image by freepik</a>
+- https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/
 
 ## **Future Enhancements**
 
