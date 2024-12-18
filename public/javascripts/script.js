@@ -1,4 +1,13 @@
-const weeks = ['All', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const weeks = [
+  'All',
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
 
 function weekButtons() {
   const weekButtonSection = document.querySelector('.week-buttons');
@@ -14,7 +23,7 @@ function weekButtons() {
       resetColors();
       filterDays(button, day);
     });
-  })
+  });
 }
 
 function filterDays(button, day) {
@@ -31,15 +40,15 @@ function filterDays(button, day) {
     if (button.classList.contains('All')) {
       eachInput.style.display = '';
     }
-  })
+  });
 }
 
 function resetColors() {
   const week = document.querySelectorAll('.day');
 
   week.forEach((day) => {
-    day.style.backgroundColor = '#1e1e1e'
-  })
+    day.style.backgroundColor = '#1e1e1e';
+  });
 }
 
 function showForm() {
@@ -48,7 +57,7 @@ function showForm() {
 
   addButton.addEventListener('click', () => {
     form.style.display = '';
-  })
+  });
 }
 
 function addEntry() {
@@ -67,25 +76,31 @@ function addEntry() {
         memory: formData.get('memory'),
         authorId: '67589ab2c23df25a12718523',
         day: formData.get('weekday'),
-      }
+      };
 
       fetch('/memory', {
         method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formDataObject)
-      })
-    })
-  })
+        body: JSON.stringify(formDataObject),
+      });
+    });
+  });
 }
 
-function editMemory() {
-  const memories = document.querySelectorAll('.page'); 
+function editDeleteMemory() {
+  const memories = document.querySelectorAll('.page');
   const addEntry = document.getElementById('edit-entry');
 
   memories.forEach((memory) => {
     const editButton = memory.querySelector('.edit');
+    const saveButton = document.querySelector('.save-button');
+    const deleteButton = memory.querySelector('.delete');
+
+    deleteButton.addEventListener('click', async () => {
+      deleteMemory(memory.id);
+    });
 
     editButton.addEventListener('click', () => {
       addEntry.style.display = 'block';
@@ -102,43 +117,47 @@ function editMemory() {
       const inputDay = document.getElementById('edit-weekday');
       inputDay.value = memoryDay.textContent;
 
-      const saveButton = document.querySelector('.save-button');
-
       saveButton.addEventListener('click', async (e) => {
         e.preventDefault();
         addEntry.style.display = 'none';
         const newTitle = inputTitle.value;
         const newMemory = inputText.value;
         const newDay = inputDay.value;
-        
+
         const updatedMemory = {
           title: newTitle,
           memoryID: memory.id,
           memory: newMemory,
           day: newDay,
-        }
+        };
 
         await updateMemory(updatedMemory);
 
         memoryTitle.textContent = newTitle;
         memoryText.textContent = newMemory;
         memoryDay.textContent = newDay;
-      })
-    })
-  })
+      });
+    });
+  });
 }
 
 async function updateMemory(updatedMemory) {
   fetch('/memory', {
     method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updatedMemory)
-  })
+    body: JSON.stringify(updatedMemory),
+  });
+}
+
+async function deleteMemory(memoryID) {
+  fetch('/memory/' + memoryID, {
+    method: 'DELETE',
+  });
 }
 
 weekButtons();
 showForm();
 addEntry();
-editMemory();
+editDeleteMemory();

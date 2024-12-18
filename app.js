@@ -7,7 +7,7 @@ const connectToDatabase = require('./config/db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const memoryRouter = require('./routes/memory')
+const memoryRouter = require('./routes/memory');
 
 var app = express();
 

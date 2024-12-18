@@ -1,67 +1,67 @@
-
-<div class="full-page">
-  <div class="week-buttons">
+<div class='full-page'>
+  <div class='week-buttons'>
   </div>
-  <div class="heading">
+  <div class='heading'>
     <h1>Weekly Diary</h1>
-    <button class="add-more-button">+</button>
+    <button class='add-more-button'>+</button>
   </div>
   <div class='diary'>
     <div>
-    {{#each memories}}
-      <div class='page {{this.day}}' id={{this._id}}>
-        <div class='memory'>
-          <h2 class='memory-title'>{{this.title}}</h2>
-          <p class='memory-text'>{{this.memory}}</p>
-          {{#each this.author}}
-            <p class='memory-author' author_id="{{this._id}}">By {{this.username}}</p>
-          {{/each}}
-          <p>Post on <span class="memory-day">{{this.day}}</span></p>
+      {{#each memories}}
+        <div class='page {{this.day}}' id={{this._id}}>
+          <div class='memory'>
+            <h2 class='memory-title'>{{this.title}}</h2>
+            <p class='memory-text'>{{this.memory}}</p>
+            {{#each this.author}}
+              <p class='memory-author' author_id='{{this._id}}'>By
+                {{this.username}}</p>
+            {{/each}}
+            <p>Post on <span class='memory-day'>{{this.day}}</span></p>
+          </div>
+          <button class='edit'>Edit</button>
+          <button class='delete'>Delete</button>
         </div>
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>
-      </div>
-    {{/each}}
+      {{/each}}
     </div>
   </div>
 
-  <form id="add-entry" class="get-entry" style="display: none;">
+  <form id='add-entry' class='get-entry' style='display: none;'>
     <h2>Create new diary entry</h2>
-    <label for="memory-title">Memory Title</label>
-    <input type="text" name="title" placeholder="title" id="memory-title">
-    <label for="memory">Memory</label>
-    <textarea name="memory" id="memory" cols="30" rows="10"></textarea>
-    <label for="weekday">Weekday</label>
-    <select name="weekday" id="weekday">
-      <option value="Sunday">Sunday</option>
-      <option value="Monday">Monday</option>
-      <option value="Tuesday">Tuesday</option>
-      <option value="Wednesday">Wednesday</option>
-      <option value="Thursday">Thursday</option>
-      <option value="Friday">Friday</option>
-      <option value="Saturday">Saturday</option>
+    <label for='memory-title'>Memory Title</label>
+    <input type='text' name='title' placeholder='title' id='memory-title' />
+    <label for='memory'>Memory</label>
+    <textarea name='memory' id='memory' cols='30' rows='10'></textarea>
+    <label for='weekday'>Weekday</label>
+    <select name='weekday' id='weekday'>
+      <option value='Sunday'>Sunday</option>
+      <option value='Monday'>Monday</option>
+      <option value='Tuesday'>Tuesday</option>
+      <option value='Wednesday'>Wednesday</option>
+      <option value='Thursday'>Thursday</option>
+      <option value='Friday'>Friday</option>
+      <option value='Saturday'>Saturday</option>
     </select>
-    <input type="submit" value="submit">
+    <input type='submit' value='submit' />
   </form>
 
-  <form id="edit-entry" class="get-entry" style="display: none;">
-  <h2>Edit diary entry</h2>
-  <label for="memory-title">Memory Title</label>
-  <input type="text" name="title" placeholder="title" id="edit-title">
-  <label for="memory">Memory</label>
-  <textarea name="memory" id="edit-memory" cols="30" rows="10"></textarea>
-  <label for="weekday">Weekday</label>
-  <select name="weekday" id="edit-weekday">
-    <option value="Sunday">Sunday</option>
-    <option value="Monday">Monday</option>
-    <option value="Tuesday">Tuesday</option>
-    <option value="Wednesday">Wednesday</option>
-    <option value="Thursday">Thursday</option>
-    <option value="Friday">Friday</option>
-    <option value="Saturday">Saturday</option>
-  </select>
-  <input type="submit" class="save-button" value="save">
-</form>
+  <form id='edit-entry' class='get-entry' style='display: none;'>
+    <h2>Edit diary entry</h2>
+    <label for='memory-title'>Memory Title</label>
+    <input type='text' name='title' placeholder='title' id='edit-title' />
+    <label for='memory'>Memory</label>
+    <textarea name='memory' id='edit-memory' cols='30' rows='10'></textarea>
+    <label for='weekday'>Weekday</label>
+    <select name='weekday' id='edit-weekday'>
+      <option value='Sunday'>Sunday</option>
+      <option value='Monday'>Monday</option>
+      <option value='Tuesday'>Tuesday</option>
+      <option value='Wednesday'>Wednesday</option>
+      <option value='Thursday'>Thursday</option>
+      <option value='Friday'>Friday</option>
+      <option value='Saturday'>Saturday</option>
+    </select>
+    <input type='submit' class='save-button' value='save' />
+  </form>
 </div>
 
 <script src='/javascripts/script.js'></script>
