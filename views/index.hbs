@@ -9,12 +9,12 @@
   <div class='diary'>
     <div>
     {{#each memories}}
-      <div class='page {{this.day}}'>
+      <div class='page {{this.day}}' id={{this._id}}>
         <div class='memory'>
           <h2 class='memory-title'>{{this.title}}</h2>
           <p class='memory-text'>{{this.memory}}</p>
           {{#each this.author}}
-            <p class='memory-author'>By {{this.username}}</p>
+            <p class='memory-author' author_id="{{this._id}}">By {{this.username}}</p>
           {{/each}}
           <p>Post on <span class="memory-day">{{this.day}}</span></p>
         </div>
@@ -60,7 +60,7 @@
     <option value="Friday">Friday</option>
     <option value="Saturday">Saturday</option>
   </select>
-  <input type="submit" value="save">
+  <input type="submit" class="save-button" value="save">
 </form>
 </div>
 

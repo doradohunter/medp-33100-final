@@ -88,9 +88,9 @@ function editMemory() {
     editButton.addEventListener('click', () => {
       addEntry.style.display = 'block';
       // Title
-      const memoryTitle = memory.querySelector('.memory-title').textContent;
+      const memoryTitle = memory.querySelector('.memory-title');
       const inputTitle = document.getElementById('edit-title');
-      inputTitle.value = memoryTitle;
+      inputTitle.value = memoryTitle.textContent;
       // Memory
       const memoryText = memory.querySelector('.memory-text').textContent;
       const inputText = document.getElementById('edit-memory');
@@ -100,8 +100,36 @@ function editMemory() {
       const inputDay = document.getElementById('edit-weekday');
       inputDay.value = memoryDay;
 
-      console.log(memoryDay);
+      const saveButton = document.querySelector('.save-button');
+
+      saveButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        addEntry.style.display = 'none';
+        const newTitle = inputTitle.value;
+        
+        const updatedMemory = {
+          title: newTitle,
+          memoryID: memory.id,
+          // memory: memory.querySelector('.memory-text').textContent,
+          // author: memory.querySelector('.memory-author').getAttribute('author_id'),
+          // weekday: memory.querySelector('.memory-day').textContent,
+        }
+
+        console.log(updatedMemory);
+
+        updateMemory(updatedMemory);
+      })
     })
+  })
+}
+
+async function updateMemory(updatedMemory) {
+  fetch('/memory', {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(updatedMemory)
   })
 }
 
