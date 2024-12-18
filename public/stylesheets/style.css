@@ -125,7 +125,8 @@ main {
 .posts {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    ;
 }
 
 .post {
@@ -133,12 +134,14 @@ main {
     padding: .6em;
     display: flex;
     flex-direction: column;
-    height: fit-content;
+    height: 40em;
     border: .2em solid #DAD9D9;
     border-radius: 10px;
-    min-width:20em;
-    max-width: 24em;
+    min-width: 24em;
+    max-width:36em;
     gap: .5em;
+    background-color: #E6E6FA;
+    justify-content: flex-start;
 }
 
 .open {
@@ -172,11 +175,12 @@ main {
     width: auto;
 }
 
-.edit_btn {
+.editbtn {
     height: 25px;
     width: auto;
     padding-left:.5em;
 }
+
 
 .post_title_structure
 {
@@ -191,4 +195,33 @@ main {
     border-radius: 1em;
     display:flex;
     flex-direction: column;
+}
+
+.btnflex img{
+    display: inline-block;
+    height: 15px;
+    width:auto;
+    padding-left:.4em;
+}
+
+.btnflex{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.brandMove{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.post_brand{
+    border-radius: 1em;
+    padding: 0 .4em;
+    background-color: #F8F8F8;
+    color:#DAD9D9;
+    font-weight: 700;
+    border: .2em solid #DAD9D9;
 }
