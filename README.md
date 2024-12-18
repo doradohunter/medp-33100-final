@@ -18,7 +18,8 @@
     - APIs
     - Libraries
     - Other
-    - https://www.magicpattern.design/tools/css-backgrounds
+    - Flickity
+        - https://flickity.metafizzy.co/
  
 ## **Live Demo**
 

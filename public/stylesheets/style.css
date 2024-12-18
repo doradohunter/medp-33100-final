@@ -28,6 +28,36 @@ button {
   font-style: italic;
 }
 
+#onboarding_container{
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.onboarding{
+  position: relative;
+  top: 25%;
+  width: 75%;
+  height: 450px;
+  margin: auto;
+  /* z-index: 1; */
+}
+
+.cell{
+  padding: 50px;
+  margin: auto;
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
 #searchEntry {
   display: flex;
   justify-content: space-between;
@@ -40,6 +70,13 @@ button {
   color: white;
   font: 16px "Pixelify Sans", sans-serif;
   cursor: pointer;
+}
+
+.close_onboarding{
+  border-color: black;
+  color: black;
+  margin: auto;
+  margin-top: 100px;
 }
 
 #newEntryContainer {

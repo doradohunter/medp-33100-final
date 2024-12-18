@@ -1,14 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    //onboarding slides
+    const onboarding = document.querySelector('.onboarding')
+    const slides = new Flickity(onboarding, {
+        freeScroll: true,
+        contain: true,
+        draggable: false
+    })
+
+    //close onboarding
+    const onboardingButtons = document.querySelectorAll('.close_onboarding')
+    const onboardingContainer = document.querySelector('#onboarding_container')
+
+    onboardingButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            onboardingContainer.style.display = 'none'
+        })
+    })
+
     //search
     const searchForm = document.querySelector('#searchBar')
-    searchForm.addEventListener('submit', async (e)=>{
+    searchForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(searchForm)
         const searchInput = formData.get('searchText')
 
-        const newEntries = await getEntries(searchInput);    
+        const newEntries = await getEntries(searchInput);
 
         displayEntries(newEntries)
     })
@@ -16,19 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // entry pop up button
     const entryButton = document.querySelector('#entryButton')
     const entryContainer = document.querySelector('#newEntryContainer')
-    entryButton.addEventListener('click', ()=>{
-        entryContainer.style.display='block'
+    entryButton.addEventListener('click', () => {
+        entryContainer.style.display = 'block'
     })
 
     //click cancel button to close entry form
     const cancelEntry = document.querySelector('#entryCancel')
-    cancelEntry.addEventListener('click', ()=>{
-        entryContainer.style.display='none'
+    cancelEntry.addEventListener('click', () => {
+        entryContainer.style.display = 'none'
     })
 
-    window.addEventListener('click', (event)=>{
+    window.addEventListener('click', (event) => {
         if (event.target == entryContainer) {
-            entryContainer.style.display='none'
+            entryContainer.style.display = 'none'
         }
     })
 
@@ -77,17 +95,17 @@ document.addEventListener('DOMContentLoaded', () => {
             image.appendChild(imageEdit);
 
             //edit author
-            const username = entry.querySelector(".author_text");   
+            const username = entry.querySelector(".author_text");
             const usernameEdit = document.createElement('input');
             usernameEdit.value = username.innerText;
-            username.innerHTML="";
+            username.innerHTML = "";
             username.appendChild(usernameEdit);
 
             //edit platform
-            const platform = entry.querySelector(".platform_text");   
+            const platform = entry.querySelector(".platform_text");
             const platformEdit = document.createElement('input');
             platformEdit.value = platform.innerText;
-            platform.innerHTML="";
+            platform.innerHTML = "";
             platform.appendChild(platformEdit);
 
             //edit body text
@@ -171,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function getEntries(searchParams) {
-        const response = await fetch ('/entries?search=' + searchParams)
+        const response = await fetch('/entries?search=' + searchParams)
         const entries = await response.json()
 
         return entries
