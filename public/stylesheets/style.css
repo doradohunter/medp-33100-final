@@ -76,7 +76,7 @@ body,
   cursor: pointer;
 }
 
-#add-entry {
+.get-entry {
   background-color: #1e1e1e;
   position: absolute;
   top: 50%;

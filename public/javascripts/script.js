@@ -57,7 +57,6 @@ function addEntry() {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log('submitted');
 
       const formData = new FormData(form);
 
@@ -67,8 +66,6 @@ function addEntry() {
         authorId: '67589ab2c23df25a12718523',
         day: formData.get('weekday'),
       }
-
-      console.log(formDataObject);
 
       fetch('/memory', {
         method: 'POST',
@@ -81,6 +78,34 @@ function addEntry() {
   })
 }
 
+function editMemory() {
+  const memories = document.querySelectorAll('.page'); 
+  const addEntry = document.getElementById('edit-entry');
+
+  memories.forEach((memory) => {
+    const editButton = memory.querySelector('.edit');
+
+    editButton.addEventListener('click', () => {
+      addEntry.style.display = 'block';
+      // Title
+      const memoryTitle = memory.querySelector('.memory-title').textContent;
+      const inputTitle = document.getElementById('edit-title');
+      inputTitle.value = memoryTitle;
+      // Memory
+      const memoryText = memory.querySelector('.memory-text').textContent;
+      const inputText = document.getElementById('edit-memory');
+      inputText.value = memoryText;
+      // Weekday
+      const memoryDay = memory.querySelector('.memory-day').textContent;
+      const inputDay = document.getElementById('edit-weekday');
+      inputDay.value = memoryDay;
+
+      console.log(memoryDay);
+    })
+  })
+}
+
 weekButtons();
 showForm();
 addEntry();
+editMemory();

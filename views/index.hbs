@@ -16,14 +16,16 @@
           {{#each this.author}}
             <p class='memory-author'>By {{this.username}}</p>
           {{/each}}
-          <p class="memory-day">Post on {{this.day}}</p>
+          <p>Post on <span class="memory-day">{{this.day}}</span></p>
         </div>
+        <button class="edit">Edit</button>
+        <button class="delete">Delete</button>
       </div>
     {{/each}}
     </div>
   </div>
 
-  <form id="add-entry" style="display: none;">
+  <form id="add-entry" class="get-entry" style="display: none;">
     <h2>Create new diary entry</h2>
     <label for="memory-title">Memory Title</label>
     <input type="text" name="title" placeholder="title" id="memory-title">
@@ -41,6 +43,25 @@
     </select>
     <input type="submit" value="submit">
   </form>
+
+  <form id="edit-entry" class="get-entry" style="display: none;">
+  <h2>Edit diary entry</h2>
+  <label for="memory-title">Memory Title</label>
+  <input type="text" name="title" placeholder="title" id="edit-title">
+  <label for="memory">Memory</label>
+  <textarea name="memory" id="edit-memory" cols="30" rows="10"></textarea>
+  <label for="weekday">Weekday</label>
+  <select name="weekday" id="edit-weekday">
+    <option value="Sunday">Sunday</option>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+  </select>
+  <input type="submit" value="save">
+</form>
 </div>
 
 <script src='/javascripts/script.js'></script>
