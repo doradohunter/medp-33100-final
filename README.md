@@ -26,7 +26,7 @@
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://inky-foremost-veterinarian.glitch.me/
 
 ## **Credits**
 
