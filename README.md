@@ -56,6 +56,7 @@
 - List of future enhancements I would like to make or improve given more time.
   - Connect an API that provides planting benefits and information (guide people on their planting journey step by step) 
   - Be able to change posted entry images
+  - Implement pagination
   - Refine sort by function
   - More refined responsiveness
   - Better UI/Add more accessibility considerations
