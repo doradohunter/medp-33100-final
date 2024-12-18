@@ -56,6 +56,8 @@ function addEntry() {
     const form = document.getElementById('add-entry');
 
     form.addEventListener('submit', (e) => {
+      form.style.display = 'none';
+
       e.preventDefault();
 
       const formData = new FormData(form);
@@ -92,32 +94,35 @@ function editMemory() {
       const inputTitle = document.getElementById('edit-title');
       inputTitle.value = memoryTitle.textContent;
       // Memory
-      const memoryText = memory.querySelector('.memory-text').textContent;
+      const memoryText = memory.querySelector('.memory-text');
       const inputText = document.getElementById('edit-memory');
-      inputText.value = memoryText;
+      inputText.value = memoryText.textContent;
       // Weekday
-      const memoryDay = memory.querySelector('.memory-day').textContent;
+      const memoryDay = memory.querySelector('.memory-day');
       const inputDay = document.getElementById('edit-weekday');
-      inputDay.value = memoryDay;
+      inputDay.value = memoryDay.textContent;
 
       const saveButton = document.querySelector('.save-button');
 
-      saveButton.addEventListener('click', (e) => {
+      saveButton.addEventListener('click', async (e) => {
         e.preventDefault();
         addEntry.style.display = 'none';
         const newTitle = inputTitle.value;
+        const newMemory = inputText.value;
+        const newDay = inputDay.value;
         
         const updatedMemory = {
           title: newTitle,
           memoryID: memory.id,
-          // memory: memory.querySelector('.memory-text').textContent,
-          // author: memory.querySelector('.memory-author').getAttribute('author_id'),
-          // weekday: memory.querySelector('.memory-day').textContent,
+          memory: newMemory,
+          day: newDay,
         }
 
-        console.log(updatedMemory);
+        await updateMemory(updatedMemory);
 
-        updateMemory(updatedMemory);
+        memoryTitle.textContent = newTitle;
+        memoryText.textContent = newMemory;
+        memoryDay.textContent = newDay;
       })
     })
   })

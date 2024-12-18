@@ -25,13 +25,14 @@ router.post('/', async function (req, res) {
 })
 
 router.put('/', async function (req, res) {
-  console.log("YES")
-  console.log(req.body);
   try {
     const db = req.app.locals.db;
 
     await db.collection('memories').updateOne({ _id: new ObjectId(req.body.memoryID)},
-    { $set: { title: req.body.title }});
+    { $set: { title: req.body.title, 
+      memory: req.body.memory,
+      day: req.body.day,
+     }});
 
   } catch (error) {
     console.log(error);
