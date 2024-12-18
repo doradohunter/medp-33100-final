@@ -136,6 +136,7 @@ main {
     height: fit-content;
     border: .2em solid #DAD9D9;
     border-radius: 10px;
+    min-width:20em;
     max-width: 24em;
     gap: .5em;
 }
@@ -181,4 +182,13 @@ main {
 {
     display:flex;
     align-items: center;
+}
+
+.create{
+    gap: 1em;
+    padding: 2em;
+    border: .2em solid #DAD9D9;
+    border-radius: 1em;
+    display:flex;
+    flex-direction: column;
 }

@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', async function (req, res) {
     console.log(req.body);
-    res.send('sucessfully created post');
+    // res.send('sucessfully created post'); //is sent at end to client
     try {
         const db = req.app.locals.db;
         const newPost = {

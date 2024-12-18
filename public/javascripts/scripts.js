@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     const form = document.querySelector('.create');
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log('submitted');
 
         const formData = new FormData(form);

@@ -11,8 +11,8 @@ router.get('/', async function(req, res, next) {
 
     res.render('index', {title: 'Sneaker Blog', posts: posts})
   } catch (error) {
+    res.render('index', { title: 'Error' });
   }
-  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
