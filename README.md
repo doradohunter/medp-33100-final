@@ -20,6 +20,8 @@
     - Other
     - Flickity
         - https://flickity.metafizzy.co/
+    - https://gsap.com/
+    - https://stackoverflow.com/questions/61771309/pixel-art-style-border-on-tumblr-theme
  
 ## **Live Demo**
 

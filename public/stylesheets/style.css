@@ -70,6 +70,12 @@ button {
   color: white;
   font: 16px "Pixelify Sans", sans-serif;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.buttons:hover{
+  background-color: white;
+  color: black;
 }
 
 .close_onboarding{
@@ -77,6 +83,12 @@ button {
   color: black;
   margin: auto;
   margin-top: 100px;
+  transition: 0.5s;
+}
+
+.close_onboarding:hover{
+  background-color: black;
+  color: white;
 }
 
 #newEntryContainer {
@@ -107,22 +119,38 @@ button {
   background-color: transparent;
   border: solid 2px black;
   color: black;
+  transition: 0.5s;
+}
+
+.entryButtons:hover{
+  background-color: black;
+  color:white
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 20px;
+  gap: 50px 10px;
   margin: auto;
 }
 
 .entry {
   width: 350px;
   /* height: 400px; */
-  border: 3px solid white;
+  /* border: 3px solid white; */
+  box-shadow:
+    -7px 0 0 0 white,
+    7px 0 0 0 white,
+    0 -7px 0 0 white,
+    0 7px 0 0 white;
   padding: 10px;
   background-color: transparent;
+  transition: 0.4s;
+}
+
+.entry:hover{
+  background-color: rgba(0, 206, 209, 0.454);
 }
 
 .top_line {
@@ -140,6 +168,12 @@ button {
   border: white 2px solid;
   font: 16px "Pixelify Sans", sans-serif;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.delete_button:hover{
+  background-color: red;
+  color: white;
 }
 
 .game_name {

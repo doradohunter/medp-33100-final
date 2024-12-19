@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //save changes
             const saveButton = document.createElement('button')
             saveButton.classList.add("saveButton");
+            saveButton.classList.add("buttons")
             saveButton.innerText = "Save Changes"
             saveButton.addEventListener('click', async () => {
                 const updatedGame = gameEdit.value;
@@ -163,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     });
 
+    //display searched entries
     function displayEntries(entries) {
         const container = document.querySelector('.container');
         container.innerHTML = '';
@@ -188,6 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    //gsap animations
+    gsap.from(onboarding, {duration: 2, opacity: 0, top: 250})
+
+    //fetch responses
     async function getEntries(searchParams) {
         const response = await fetch('/entries?search=' + searchParams)
         const entries = await response.json()
