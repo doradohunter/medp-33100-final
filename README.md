@@ -2,22 +2,22 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- Just 4 Kicks is an online blog platform focused on letting users anonymously share their personal experiences with their favorite footwear.
 
 ## **Project Members**
 
-- List the people a part of this group.
+-massimo viviano
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+- Create: Users can add posts
+- Edit: Users can edit their posts
+- Delete: Users can delete a post if they so choose
 
 ## **Technologies Used**
 
-- List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
+- Google fonts(X2)
+- GSAP was attempted but it would not work.
  
 ## **Live Demo**
 
@@ -25,9 +25,10 @@
 
 ## **Credits**
 
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
+- A lot of w3 for refreshers on css animations, one link with a guy explaining how to do a timed function which I did not use
 
 ## **Future Enhancements**
 
-- List any future enhancements you would like to make or improve given more time.
+- Filters
+- Color-coding posts
+- making better use of modals.
