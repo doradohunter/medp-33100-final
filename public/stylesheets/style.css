@@ -34,7 +34,7 @@ body,
   grid-row: 1 / 2;
 }
 
-.heading > button {
+.heading > button:first-child {
   display: none;
 }
 
@@ -95,13 +95,15 @@ body,
   font-size: 2rem;
   border: none;
   color: white;
-  background-color: #7ca7ff;
+  background-color: rgb(0, 43, 130);
   height: 100%;
   width: 5vw;
+  cursor: pointer;
+  transition: all 200ms;
 }
 
 .add-more-button:hover {
-  cursor: pointer;
+  opacity: 0.8;
 }
 
 .get-entry {
@@ -143,7 +145,6 @@ body,
 
 
 @media (max-width: 1700px) {
-
   .diary > div {
     grid-template-columns: repeat(3, 1fr);
   }
