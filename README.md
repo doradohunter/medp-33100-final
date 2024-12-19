@@ -2,38 +2,41 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- *everyone's gaming journal* is a web application where users can share their memories with video games that they've played.
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Rochelle Williams
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+### Users can:
+- add their own journal entry
+- edit their journal entries
+- delete a journal entry
+- search through journal entries
 
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
-    - Flickity
-        - https://flickity.metafizzy.co/
-    - https://gsap.com/
-    - https://stackoverflow.com/questions/61771309/pixel-art-style-border-on-tumblr-theme
+    - <a href="https://nodejs.org/en">Node.js</a>
+    - <a href="https://expressjs.com/">Express.js</a>
+    - <a href="https://flickity.metafizzy.co/">Flickity</a>
+    - <a href="https://gsap.com/">GSAP</a>
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://everyone-gaming-journal.glitch.me/
 
 ## **Credits**
 
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
-- <a href="https://www.freepik.com/free-vector/pixel-rain-abstract-background_6072170.htm#from_view=detail_alsolike">Image by freepik</a>
-- https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/
+- <a href="https://www.freepik.com/free-vector/pixel-rain-abstract-background_6072170.htm#from_view=detail_alsolike">Background Image by freepik</a>
+- <a href="https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/">Popup Box Tutorial</a>
+- <a href="https://stackoverflow.com/questions/61771309/pixel-art-style-border-on-tumblr-theme">Pixel Art Border</a>
 
 ## **Future Enhancements**
 
-- List any future enhancements you would like to make or improve given more time.
+- Make date set to current timezone
+- Add image server
+- Add themes
+- Add pagination
