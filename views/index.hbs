@@ -1,0 +1,67 @@
+<div class='full-page'>
+  <div class='week-buttons'>
+  </div>
+  <div class='heading'>
+    <button>
+      <img src="/menu.svg" alt="" width="30px">
+    </button>
+
+    <h1>Weekly Diary</h1>
+    <button class='add-more-button'>+</button>
+  </div>
+  <div class='diary'>
+    <div>
+      {{#each memories}}
+        <div class='page {{this.day}}' id={{this._id}}>
+          <div class='memory'>
+            <h2 class='memory-title'>{{this.title}}</h2>
+            <p>Memory: <span class='memory-text'>{{this.memory}}</span></p>
+            {{#each this.author}}
+              <p class='memory-author' author_id='{{this._id}}'>By
+                {{this.username}}</p>
+            {{/each}}
+            <p>Occurence Date: <span class='memory-day'>{{this.day}}</span></p>
+          </div>
+          <button class='edit'>Edit</button>
+          <button class='delete'>Delete</button>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  <form id='add-entry' class='get-entry' style='display: none;'>
+    <h2>Create new diary entry</h2>
+    <input type='text' name='title' placeholder='title' id='memory-title' />
+    <textarea name='memory' id='memory' cols='30' rows='10'></textarea>
+    <select name='weekday' id='weekday'>
+      <option value='Sunday'>Sunday</option>
+      <option value='Monday'>Monday</option>
+      <option value='Tuesday'>Tuesday</option>
+      <option value='Wednesday'>Wednesday</option>
+      <option value='Thursday'>Thursday</option>
+      <option value='Friday'>Friday</option>
+      <option value='Saturday'>Saturday</option>
+    </select>
+    <button class="close">Cancel</button>
+    <input type='submit' id="create-memory" value='submit' />
+  </form>
+
+  <form id='edit-entry' class='get-entry' style='display: none;'>
+    <h2>Edit diary entry</h2>
+    <input type='text' name='title' placeholder='title' id='edit-title' />
+    <textarea name='memory' id='edit-memory' cols='30' rows='10'></textarea>
+    <select name='weekday' id='edit-weekday'>
+      <option value='Sunday'>Sunday</option>
+      <option value='Monday'>Monday</option>
+      <option value='Tuesday'>Tuesday</option>
+      <option value='Wednesday'>Wednesday</option>
+      <option value='Thursday'>Thursday</option>
+      <option value='Friday'>Friday</option>
+      <option value='Saturday'>Saturday</option>
+    </select>
+    <button class="close">Cancel</button>
+    <input type='submit' class='save-button' value='save' />
+  </form>
+</div>
+
+<script src='/javascripts/script.js'></script>
