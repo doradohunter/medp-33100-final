@@ -2,22 +2,26 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- A weekly diary where users can anonymously add diary entries of experiences they have had on a particular day.
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Abdul
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+- Add different entries
+- Edit entries
+- Delete entried
 
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
+    - HTML
+    - CSS
+    - JavaScript
+    - Git
+    - Express
  
 ## **Live Demo**
 
