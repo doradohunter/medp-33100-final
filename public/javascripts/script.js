@@ -154,7 +154,17 @@ function displayEdits() {
   });
 }
 
-function displayMemory() {}
+function displayMemory() {
+  const pages = document.querySelectorAll('.page');
+
+  pages.forEach((page) => {
+    const deleteButton = page.querySelector('.delete');
+
+    deleteButton.addEventListener('click', () => {
+      diary.removeChild(page);
+    });
+  });
+}
 
 async function updateMemory(updatedMemory) {
   fetch('/memory', {
