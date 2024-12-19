@@ -64,20 +64,19 @@ function addEntry() {
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('add-entry');
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', () => {
       form.style.display = 'none';
-      
+
       const formData = new FormData(form);
 
       const formDataObject = {
-        _id: formData.get('_id'),
         title: formData.get('title'),
         memory: formData.get('memory'),
         authorId: '67589ab2c23df25a12718523',
         day: formData.get('weekday'),
       };
 
-      await createMemory(formDataObject);
+      createMemory(formDataObject);
     });
   });
 }
@@ -111,8 +110,7 @@ function editDeleteMemory() {
       inputDay.value = memoryDay.textContent;
 
 
-      saveButton.addEventListener('click', async (e) => {
-        e.preventDefault();
+      saveButton.addEventListener('click', () => {
         addEntry.style.display = 'none';
 
         const newTitle = inputTitle.value;
@@ -130,7 +128,7 @@ function editDeleteMemory() {
           day: newDay,
         };
 
-        await updateMemory(updatedMemory);
+        updateMemory(updatedMemory);
       });
     });
   });
