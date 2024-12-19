@@ -63,8 +63,9 @@ function showForm() {
 function addEntry() {
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('add-entry');
+    const createButton = document.getElementById('create-memory');
 
-    form.addEventListener('submit', () => {
+    createButton.addEventListener('click', () => {
       form.style.display = 'none';
 
       const formData = new FormData(form);
@@ -95,7 +96,7 @@ function editDeleteMemory() {
     });
 
     editButton.addEventListener('click', () => {
-      addEntry.style.display = 'block';
+      addEntry.style.display = '';
       // Title
       const memoryTitle = memory.querySelector('.memory-title');
       const inputTitle = document.getElementById('edit-title');
@@ -159,6 +160,38 @@ function displayDelete() {
   });
 }
 
+function showDates() {
+  const menu = document.querySelector('.heading > button');
+  const weekButtons = document.querySelector('.week-buttons');
+  const daysButton = document.querySelectorAll('.day');
+  const x = window.matchMedia('(min-width: 1000px)')
+
+  menu.addEventListener('click', () => {
+    if (weekButtons.style.display === 'none') {
+      weekButtons.style.display = 'grid';
+    } else {
+      weekButtons.style.display = 'none';
+    }
+  })
+
+  daysButton.forEach(button => {
+    button.addEventListener('click', () => {
+      if (!x.matches) {
+        weekButtons.style.display = 'none';
+      }
+    })
+  })
+
+  x.addEventListener('change', () => {
+    if (x.matches) {
+      weekButtons.style.display = 'grid';
+    } else {
+      weekButtons.style.display = 'none';
+    }
+  });
+}
+
+
 async function createMemory(createdMemory) {
   fetch('/memory', {
     method: 'POST',
@@ -191,3 +224,4 @@ addEntry();
 editDeleteMemory();
 displayDelete();
 displayEdits();
+showDates();
