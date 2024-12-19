@@ -1,28 +1,45 @@
-document.addEventListener('DOMContentLoaded', () =>{
-    const form = document.querySelector('.create');
+document.addEventListener('DOMContentLoaded', () => {
+    //form appears and disappears
+    create = document.querySelector('.create');
+    create.style.display = 'none';
+    newPost = document.querySelector('.create_post');
+    newPost.addEventListener('click', () => {
+        newPost.style.display = 'none';
+        create.style.display = 'block';
+        
+    })
 
+    SubmitNewPost = document.querySelector('.createPost');
+    SubmitNewPost.addEventListener('click', () =>{
+        newPost.style.display = 'block';
+        create.style.display = 'none';
+
+    })
+    //Form submission
+    const form = document.querySelector('.create');
     form.addEventListener('submit', (e) => {
         const formData = new FormData(form);
         const formDataObject = {
-            image:formData.get('image'),
-            title:formData.get('title'),
-            story:formData.get('story'),
-            brand:formData.get('brand')
+            image: formData.get('image'),
+            title: formData.get('title'),
+            story: formData.get('story'),
+            brand: formData.get('brand')
         };
         formDataObject.brand = formDataObject.brand.charAt(0).toUpperCase() + formDataObject.brand.slice(1).toLowerCase();
         fetch('/posts', {
-            method:'POST',
-            headers:{
+            method: 'POST',
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formDataObject)
         })
     })
+    //Form edit
     const posts = document.querySelectorAll('.post')
-    posts.forEach(post =>{
+    posts.forEach(post => {
         const edit = post.querySelector('.editbtn'); //for edit button
         edit.addEventListener('click', () => {
-            console.log(post);
+            // console.log(post);
             const title = post.querySelector('.post_title');
             const titleInput = document.createElement('input');
             titleInput.value = title.innerHTML;
@@ -37,34 +54,62 @@ document.addEventListener('DOMContentLoaded', () =>{
 
             const saveBtn = document.createElement('button');
             saveBtn.classList.add(".save_brand");
-            saveBtn.innerHTML='Save';
+            saveBtn.innerHTML = 'Save';
             story.appendChild(saveBtn);
 
             saveBtn.addEventListener('click', () => {
-                const newTitle = titleInput.value;
-                const newStory = storyInput.value; 
+                console.log(title.innerHtml)
                 const updatedPost = {
                     img: post.querySelector('.post_img').src,
-                    title: newTitle,
-                    story: newStory,
+                    title: titleInput.value,
+                    story: storyInput.value,
                     brand: post.querySelector('.post_brand').innerHTML
                 }
-                // console.log(updatedPost.title)
-                // console.log(updatedPost.story)
-                // console.log(updatedPost.brand)
-                console.log(updatedPost)
                 updatePost(updatedPost);
+                title.innerHTML = '';
+                story.innerHTML = '';
+                const updatedStoryContent = document.createElement('h3');
+                const updatedTitleContent = document.createElement('h3');
+                updatedStoryContent.innerHTML = storyInput.value;
+                updatedTitleContent.innerHTML = titleInput.value;
+                story.appendChild(updatedStoryContent);
+                title.appendChild(updatedTitleContent);
+                saveBtn.remove();
             })
+        })
+        //Form delete
+        const deletebtn = post.querySelector('.deletebtn');
+        const updatedPost = {
+            img: post.querySelector('.post_img').src,
+            title: post.querySelector('.post_title').innerHTML,
+            story: post.querySelector('.post_story').innerHTML,
+            brand: post.querySelector('.post_brand').innerHTML
+        }
+        deletebtn.addEventListener('click', async () => {
+            deletePost(updatedPost)
         })
     })
 
-    async function updatePost(updatedPost){
+    //Backend Edit/update call
+    async function updatePost(updatedPost) {
+        console.log('updatePost called')
         fetch('/posts', {
-            method:'PUT',
-            headers:{
+            method: 'PUT',
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(updatedPost)
+        })
+    }
+    //Backend delete call
+    async function deletePost(postobject) {
+        console.log(postobject.img)
+        fetch('/posts/', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postobject)
         })
     }
 });

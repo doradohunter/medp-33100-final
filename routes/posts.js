@@ -19,7 +19,7 @@ router.post('/', async function (req, res) {
         }
         await db.collection('Posts')
             .insertOne(newPost);
-        
+
     } catch (error) {
         console.log(error);
     }
@@ -27,16 +27,40 @@ router.post('/', async function (req, res) {
 })
 
 router.put('/', async function (req, res) {
+    console.log('async put called')
+    console.log(req.body);
     try {
         const db = req.app.locals.db;
-        
         await db.collection('Posts')
-            .updateOne(newPost);
-        
+            .updateOne(
+                {img: req.body.img},
+                {$set: {title: req.body.title}}
+            )
+        await db.collection('Posts')
+            .updateOne(
+                {img: req.body.img},
+                {$set: {story: req.body.story}}
+            );
     } catch (error) {
         console.log(error);
     }
     res.send('Successful!')
 })
 
+router.delete('/', async function (req, res) {
+   console.log('this function is being called')
+    try{
+        const db = req.app.locals.db;
+        await db.collection('Posts')
+            .deleteOne(
+            {img: req.body.img}
+            )
+    } catch (error){
+        console.log(error)
+    }
+    res.send('Success!')
+})
+
 module.exports = router;
+
+

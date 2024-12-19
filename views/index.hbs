@@ -17,6 +17,13 @@
                 <li class="Other">Other</li>
             </ul>
         </nav>
+        <form class="create">
+            <h3 class="img_text">Image link</h3><input type="text" class="image" name="image">
+            <h3 class="title_text">Post: Title</h3><input type="text" class="title" name="title">
+            <h3 class="story_text">Story</h3><input type="text" class="story" name="story">
+            <h3 class="brand_text">brand</h3><input type="text" class="brand" name="brand">
+            <input class='createPost' type="submit" value="Add to blog"/>
+        </form>
         <div class="create_post">
             <img class="add_post" src="../images/add_icon_4.svg" alt="">
         </div>
@@ -24,19 +31,12 @@
             {{#each posts}}
             <div class="post">
                 <img class="post_img" src={{this.img}} alt="">
-                <div class="btnflex"><h3 class="post_title">{{this.title}}</h3><img src="../images/edit_btn.svg" alt="" class="editbtn"></div>
+                <div class="btnflex"><h3 class="post_title">{{this.title}}</h3><img src="../images/edit_btn.svg" alt="" class="editbtn"><img src="../images/delete_btn.svg" alt="" class="deletebtn"></div>
                 <div class="SaveBtn"><h3 class="post_story">{{this.story}}</h3></div>
                 <div class="brandMove"><h3 class="post_brand">{{this.brand}}</h3></div>
                 {{!-- <div class="like_btn"><p class="likes">{{this.likes}}</p></div> --}}
             </div>
             {{/each}}
         </div>
-        <form class="create">
-            <h3 class="img_text">Image link</h3><input type="text" class="image" name="image">
-            <h3 class="title_text">Post: Title</h3><input type="text" class="title" name="title">
-            <h3 class="story_text">Story</h3><input type="text" class="story" name="story">
-            <h3 class="brand_text">brand</h3><input type="text" class="brand" name="brand">
-            <input type="submit" value="Add to blog"/>
-        </form>
     </main>
 </body>
