@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', async function (req, res) {
-    console.log(req.body);
     // res.send('sucessfully created post'); //is sent at end to client
     try {
         const db = req.app.locals.db;
@@ -27,8 +26,6 @@ router.post('/', async function (req, res) {
 })
 
 router.put('/', async function (req, res) {
-    console.log('async put called')
-    console.log(req.body);
     try {
         const db = req.app.locals.db;
         await db.collection('Posts')
@@ -48,7 +45,6 @@ router.put('/', async function (req, res) {
 })
 
 router.delete('/', async function (req, res) {
-   console.log('this function is being called')
     try{
         const db = req.app.locals.db;
         await db.collection('Posts')

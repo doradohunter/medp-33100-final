@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     SubmitNewPost.addEventListener('click', () =>{
         newPost.style.display = 'block';
         create.style.display = 'none';
-
     })
     //Form submission
     const form = document.querySelector('.create');
@@ -39,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     posts.forEach(post => {
         const edit = post.querySelector('.editbtn'); //for edit button
         edit.addEventListener('click', () => {
-            // console.log(post);
             const title = post.querySelector('.post_title');
             const titleInput = document.createElement('input');
             titleInput.value = title.innerHTML;
@@ -58,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             story.appendChild(saveBtn);
 
             saveBtn.addEventListener('click', () => {
-                console.log(title.innerHtml)
                 const updatedPost = {
                     img: post.querySelector('.post_img').src,
                     title: titleInput.value,
@@ -92,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Backend Edit/update call
     async function updatePost(updatedPost) {
-        console.log('updatePost called')
         fetch('/posts', {
             method: 'PUT',
             headers: {
