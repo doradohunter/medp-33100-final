@@ -24,13 +24,14 @@
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://arlenis-medp331-final.glitch.me/
 
 ## **Credits**
-
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
+- Card Flip Animation: https://youtu.be/OV8MVmtgmoY?si=O-HihW6NaHC62Voq
+- Used help of chat gpt for filtering reviews.
 
 ## **Future Enhancements**
 
-- List any future enhancements you would like to make or improve given more time.
+- Make it more visually themed.
+- Add more ways to interact, for example, editing, and adding images
+- Learn to create a proper login page to keep track of who logs in so that users can only edit their own posts.
