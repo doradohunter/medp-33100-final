@@ -23,7 +23,7 @@
  
 ## **Live Demo**
 
-- https://glitch.com/edit/#!/glamorous-wool-side?path=package.json%3A17%3A4
+- https://exuberant-broken-ferry.glitch.me/intro
 
 ## **Credits**
 
