@@ -1,0 +1,96 @@
+<div id="intro">
+    <h1>{{title}}</h1>
+    <p>share your memories with games</p>
+</div>
+<div id="onboarding_container">
+    <div class="onboarding">
+        <div class="cell">
+            <h2>Welcome to {{title}}!</h2>
+            <p>Here you can share your memories playing video games!</p>
+            <p>First, in order to add a new entry, press the “Add a New Entry” button on the right of the screen. (or in the
+                middle if you're on a smaller screen!)
+            </p>
+            <button class="close_onboarding buttons">Close</button>
+        </div>
+        <div class="cell">
+            <h2>Adding a New Entry</h2>
+            <ol>
+                <li>Add the name of the game you played</li>
+                <li>Put a link to an image of your game (landscape photos look best!)</li>
+                <li>Add your author name, if you don’t want to, use “anon” or “anonymous”</li>
+                <li>Put what platform you played the game on (ex. Nintendo Switch, Mobile, PC, PS5)</li>
+                <li>Last, your journal entry! This could be anything! Like what you did last time you played, a review of
+                    the game, something funny or cool that happened, or your general thoughts of the game!
+                </li>
+            </ol>
+        </div>
+        <div class="cell">
+            <h2>Search</h2>
+            <p>To search, just type your search terms in the search bar on the left (or in the middle if you're on a smaller
+                screen!) and press submit!</p>
+            <p>To reset the search, leave the search bar empty and resubmit!</p>
+            <p>You can search by the game’s name, the author, the platform (what it was played on), and the entry.</p>
+        </div>
+        <div class="cell">
+            <h2>Editing and Deleting</h2>
+            <p>To edit, press the edit button on the bottom left of each entry.</p>
+            <p>To delete, press the delete button on the top right of each entry.</p>
+        </div>
+        <div class="cell">
+            <h2>That’s it!</h2>
+            <p>That’s everything you need to know! Happy journaling!</p>
+            <button class="close_onboarding buttons">Close</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="newEntryContainer">
+    <form id="new-entry">
+        <h2>Add New Entry</h2>
+        <p><label class="bold" for="nameInput">What's the name of the game you played?</label></p>
+        <input type="text" id="nameInput" name="nameInput"><br><br>
+
+        <p><label class="bold" for="imageInput">Image Url:</label></p>
+        <input type="text" id="imageInput" name="imageInput"><br><br>
+
+        <p><label class="bold" for="authorInput">Author:</label></p>
+        <input type="text" id="authorInput" name="authorInput"><br><br>
+
+        <p><label class="bold" for="platformInput">Platform:</label></p>
+        <input type="text" id="platformInput" name="platformInput"><br><br>
+
+        <p><label class="bold" for="bodyInput">What do you want to say?:</label></p>
+        <textarea id="bodyInput" name="bodyInput" rows="4" cols="50">Insert Journal Entry Here!</textarea><br><br>
+        <input class="entryButtons" id="entryCancel" type="button" value="Cancel">
+        <input class="entryButtons" id="entrySubmit" type="submit" value="Submit">
+    </form>
+</div>
+
+<div id="searchEntry">
+    <form id="searchBar">
+        <label class="bold" for="searchText">Search:</label>
+        <input type="search" id="searchText" name="searchText" placeholder="search terms">
+        <input class="buttons" id="searchSubmit" type="submit" value="Submit">
+    </form>
+    <button class="buttons" id="entryButton">Add a New Entry</button>
+</div>
+
+<div class="container">
+    {{#each entries}}
+    <div class="entry" id="{{this._id}}">
+        <div class="top_line">
+            <h3 class="game_name">{{this.game_name}}</h3>
+            <button class="delete_button">Delete</button>
+        </div>
+        <div class="game_image">
+            <img class="game_image_url" alt="image of {{this.game_name}}" src="{{this.image_url}}">
+        </div>
+        <p class="author">by <span class="author_text">{{this.author}}</span></p>
+        <p class="date">Created On: {{this.date_created}}</p>
+        <p class="platform">Played On: <span class="platform_text">{{this.platform}}</span></p>
+        <p class="entry_text">{{this.entry_text}}</p>
+        <button class="edit_button buttons">Edit</button>
+    </div>
+    {{/each}}
+</div>

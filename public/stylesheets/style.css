@@ -1,0 +1,209 @@
+body {
+  padding: 50px;
+  font: 20px "Pixelify Sans", sans-serif;
+  background-image: url('/images/blue_pixel_rain.jpg');
+  color: white;
+}
+
+a {
+  color: #00b7ff;
+}
+
+button {
+  width: fit-content;
+  height: 25px;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#intro {
+  text-align: center;
+}
+
+#intro p {
+  font-style: italic;
+}
+
+#onboarding_container{
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.onboarding{
+  position: relative;
+  top: 25%;
+  width: 75%;
+  height: 450px;
+  margin: auto;
+  /* z-index: 1; */
+}
+
+.cell{
+  padding: 50px;
+  margin: auto;
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#searchEntry {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+
+.buttons{
+  background-color: transparent;
+  border: white 2px solid;
+  color: white;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.buttons:hover{
+  background-color: white;
+  color: black;
+}
+
+.close_onboarding{
+  border-color: black;
+  color: black;
+  margin: auto;
+  margin-top: 100px;
+  transition: 0.5s;
+}
+
+.close_onboarding:hover{
+  background-color: black;
+  color: white;
+}
+
+#newEntryContainer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+#new-entry {
+  background-color: white;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  color: black;
+}
+
+.entryButtons{
+  width: fit-content;
+  height: 25px;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+  background-color: transparent;
+  border: solid 2px black;
+  color: black;
+  transition: 0.5s;
+}
+
+.entryButtons:hover{
+  background-color: black;
+  color:white
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px 10px;
+  margin: auto;
+}
+
+.entry {
+  width: 350px;
+  /* height: 400px; */
+  /* border: 3px solid white; */
+  box-shadow:
+    -7px 0 0 0 white,
+    7px 0 0 0 white,
+    0 -7px 0 0 white,
+    0 7px 0 0 white;
+  padding: 10px;
+  background-color: transparent;
+  transition: 0.4s;
+}
+
+.entry:hover{
+  background-color: rgba(0, 206, 209, 0.454);
+}
+
+.top_line {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.delete_button{
+  position: relative;
+  top: 28px;
+  color: red;
+  background-color: transparent;
+  border: white 2px solid;
+  font: 16px "Pixelify Sans", sans-serif;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.delete_button:hover{
+  background-color: red;
+  color: white;
+}
+
+.game_name {
+  flex-grow: 2;
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+.game_image_url {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .container, #searchEntry {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  #searchEntry{
+    text-align: center;
+  }
+
+  #entryButton{
+    align-self: center;
+    margin-top: 15px;
+  }
+
+  #new-entry{
+    width: 75%;
+
+  }
+}
