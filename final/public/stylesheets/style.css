@@ -199,3 +199,119 @@ h2 {
   line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+  .login-page .container,
+  .signup-page .container,
+  .form-container {
+    width: 90%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+
+  h1, h2 {
+    font-size: 1.8rem;
+  }
+
+  .intro-container h1 {
+    font-size: 2rem;
+  }
+
+  .intro-container p {
+    font-size: 1rem;
+  }
+
+  .memory-entry {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+
+  .memory-entry h3 {
+    font-size: 1.1rem;
+  }
+
+  .memory-entry p {
+    font-size: 0.8rem;
+  }
+
+  .memory-entry .author,
+  .memory-entry .date {
+    font-size: 0.75rem;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  a {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .pencil-button {
+    font-size: 1.3rem;
+    padding: 8px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page .container,
+  .signup-page .container,
+  .form-container {
+    padding: 1rem;
+  }
+
+  h1, h2 {
+    font-size: 1.6rem;
+  }
+
+  .intro-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .intro-container p {
+    font-size: 0.9rem;
+  }
+
+  .memory-entry h3 {
+    font-size: 1rem;
+  }
+
+  .memory-entry p {
+    font-size: 0.75rem;
+  }
+
+  .memory-entry .author,
+  .memory-entry .date {
+    font-size: 0.7rem;
+  }
+
+  button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .pencil-button {
+    font-size: 1.2rem;
+    padding: 6px;
+    top: 5px;
+    right: 5px;
+  }
+
+  .memory-container {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    width: 90%;
+    max-width: none;
+  }
+}
