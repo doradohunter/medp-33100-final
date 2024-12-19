@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    const Intro = document.querySelector('.firstAct');
+    const Page = document.querySelector('.secondAct');
+    
+    Page.style.display = 'none';
+    const start = document.querySelector('.start');
+    start.addEventListener('click', () =>{
+        console.log('clicked');
+        Intro.style.display = 'none';
+        Page.style.display = 'block';
+    })
     //form appears and disappears
     create = document.querySelector('.create');
     create.style.display = 'none';
@@ -6,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     newPost.addEventListener('click', () => {
         newPost.style.display = 'none';
         create.style.display = 'block';
-        
     })
 
     SubmitNewPost = document.querySelector('.createPost');
