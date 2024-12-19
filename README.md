@@ -26,7 +26,7 @@
  
 ## **Live Demo**
 
-- https://inky-foremost-veterinarian.glitch.me/
+- https://inky-foremost-veterinarian.glitch.me
 
 ## **Credits**
 
