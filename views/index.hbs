@@ -1,0 +1,97 @@
+<script src="https://kit.fontawesome.com/683a158e0b.js" crossorigin="anonymous"></script>
+
+ <!-- Intro Screen -->
+<div id="intro-screen">
+    <h1>Welcome to Foodie Scribbles!</h1>
+    <p>This is a site for all foodies to be able to share about any restaurants they have been to! 
+        We welcome you to share your review, opinions, and any other memories you have!</p>
+    <button class="start">Start Scribbling</button>
+</div>
+
+<div id="main-content">
+    <h1>{{title}}</h1>
+    {{!-- <div class="search-wrapper">
+        <label for="search">Search By Name:</label>
+        <input type="search" id="searchBar" data-search/>
+        <button id="searchButton">Search</button>
+    </div> --}}
+    <div class="filters">
+        <p>Filter by Tag:</p>
+        <button class="reset">All</button>
+        <button class="filter-button" food-tag="Asian">Asian</button>
+        <button class="filter-button" food-tag="Hispanic">Hispanic</button>
+        <button class="filter-button" food-tag="Healthy">Healthy</button>
+        <button class="filter-button" food-tag="Fast Food">Fast Food</button>
+        <button class="filter-button" food-tag="American">American</button>
+        <button class="filter-button" food-tag="Other">Other</button>
+    </div>
+
+    <div class="all-reviews">
+    {{#each reviews}}
+        <div class="container"> 
+            <div class="review" food-tag="{{this.tags}}">
+                <div class="thefront">
+                    <h2>{{this.restaurantName}}</h2>
+                    <p>Review by: {{this.author.[0].name}} </p>
+                </div>
+                <div class="theback">
+                    <div class="rating">
+                        <!-- Stars will be dynamically added here -->
+                    </div>
+                    <p>{{this.rating}}/5</p>
+                    <p>{{this.notes}}</p>
+                    <div class="tags">
+                        <p>Tags:</p>
+                        <p><i class="fa-solid fa-tags"></i>   {{this.tags}}</p>
+                    </div>
+                    <div>
+                        <button class="delete" review-id="{{this._id}}"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    {{/each}}
+    </div>
+
+    <!-- Form for submitting a review -->
+    <div class="review-form">
+        <h2>Write a Review</h2>
+        <form id="review-form">
+        <div>
+            <label for="name">Please enter your name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        
+
+        <div>
+            <label for="restaurantName">Restaurant Name:</label>
+            <input type="text" name="restaurantName" id="restaurantName" required>
+        </div>
+
+        <div>
+            <label for="rating">Rating:</label>
+            <input type="number" name="rating" id="rating" min="1" max="5" required>
+        </div>
+
+        <div>
+            <label for="notes">Review Notes:</label>
+            <textarea name="notes" id="notes" required></textarea>
+        </div>
+
+        <div>
+            <label for="tags">Select Tag:</label>
+            <select id="tags" name="tags">
+                <option value="Asian">Asian</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="Healthy">Healthy</option>
+                <option value="Fast Food">Fast Food</option>
+                <option value="American">American</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</div>

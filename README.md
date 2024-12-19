@@ -2,32 +2,35 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- I wanted to create a restaurant log to keep track of the memories associated with them. I made the user able to rate the restaurant and add tags to them. 
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Arlenis Pena
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+- User hovers to view card
+- User can add new food review
+- User can filter reviews by tag
+- User can delete reviews
 
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
+    - Mongo DB
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://arlenis-medp331-final.glitch.me/
 
 ## **Credits**
-
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
+- Card Flip Animation: https://youtu.be/OV8MVmtgmoY?si=O-HihW6NaHC62Voq
+- Used help of chat gpt for filtering reviews.
 
 ## **Future Enhancements**
 
-- List any future enhancements you would like to make or improve given more time.
+- Make it more visually themed.
+- Add more ways to interact, for example, editing, and adding images
+- Learn to create a proper login page to keep track of who logs in so that users can only edit their own posts.
+- Add stars intead of just the number rating for visual appeal
