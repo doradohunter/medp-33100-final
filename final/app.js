@@ -24,8 +24,20 @@ connectToDatabase().then((client) => {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
 
+  // Use the routers
   app.use('/', indexRouter);
   app.use('/users', usersRouter);
+
+  // Ensure users are logged in before accessing the homepage
+  app.use(function (req, res, next) {
+    const userId = req.cookies.userId;
+
+    // If not logged in and accessing non-login/signup pages, redirect to login
+    if (!userId && req.originalUrl !== '/users/login' && req.originalUrl !== '/users/signup') {
+      return res.redirect('/users/login');
+    }
+    next();
+  });
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {
