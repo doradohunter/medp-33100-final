@@ -217,9 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
             growLeaf(`.new_plant_entry.entry_${document.querySelectorAll('.plant_entry').length}`);
 
             //add plant entry to entries
-            if(formData.get('image') === null){
-                console.log('nothing here')
-            }
             formData.append('stageID', plant_stage)
 
             await fetch('/entry', {
