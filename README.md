@@ -2,20 +2,23 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- I wanted to create a restaurant log to keep track of the memories associated with them. I made the user able to rate the restaurant and add tags to them. 
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Arlenis Pena
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+- User hovers to view card
+- User can add new food review
+- User can filter reviews by tag
+- User can delete reviews
 
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
+    - Mongo DB
     - Libraries
     - Other
  
