@@ -14,7 +14,6 @@ router.get('/', async function (req, res, next) {
                         $or: [
                             {game_name: { $regex: req.query.search, $options: 'i' }},
                             {author: { $regex: req.query.search, $options: 'i' }},
-                            {date_created: { $regex: req.query.search, $options: 'i' }},
                             {platform: { $regex: req.query.search, $options: 'i' }},
                             {entry_text: { $regex: req.query.search, $options: 'i' }}
                         ]
