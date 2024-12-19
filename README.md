@@ -19,8 +19,6 @@
 
 - List the technologies and tools used in the project:
     - Mongo DB
-    - Libraries
-    - Other
  
 ## **Live Demo**
 
