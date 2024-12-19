@@ -124,6 +124,10 @@ function editDeleteMemory() {
         const newMemory = inputText.value;
         const newDay = inputDay.value;
 
+        memoryTitle.textContent = newTitle;
+        memoryText.textContent = newMemory;
+        memoryDay.textContent = newDay;
+
         const updatedMemory = {
           title: newTitle,
           memoryID: memory.id,
@@ -132,14 +136,25 @@ function editDeleteMemory() {
         };
 
         await updateMemory(updatedMemory);
-
-        memoryTitle.textContent = newTitle;
-        memoryText.textContent = newMemory;
-        memoryDay.textContent = newDay;
       });
     });
   });
 }
+
+function displayEdits() {
+  const diary = document.querySelector('.diary > div');
+  const pages = document.querySelectorAll('.page');
+
+  pages.forEach((page) => {
+    const deleteButton = page.querySelector('.delete');
+
+    deleteButton.addEventListener('click', () => {
+      diary.removeChild(page);
+    });
+  });
+}
+
+function displayMemory() {}
 
 async function updateMemory(updatedMemory) {
   fetch('/memory', {
@@ -161,3 +176,5 @@ weekButtons();
 showForm();
 addEntry();
 editDeleteMemory();
+displayMemory();
+displayEdits();
