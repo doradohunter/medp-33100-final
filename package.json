@@ -1,5 +1,5 @@
 {
-  "name": "medp-33100-week12",
+  "name": "medp-33100-final",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,5 +13,9 @@
     "http-errors": "~1.6.3",
     "mongodb": "^6.10.0",
     "morgan": "~1.9.1"
+  },
+  "engines": {
+    "node": "16.14.2"
   }
+
 }
