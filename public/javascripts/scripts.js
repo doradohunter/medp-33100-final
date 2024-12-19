@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     posts.forEach(post =>{
         const edit = post.querySelector('.editbtn'); //for edit button
         edit.addEventListener('click', () => {
+            console.log(post);
             const title = post.querySelector('.post_title');
             const titleInput = document.createElement('input');
             titleInput.value = title.innerHTML;
@@ -35,10 +36,36 @@ document.addEventListener('DOMContentLoaded', () =>{
             story.appendChild(storyInput);
 
             const saveBtn = document.createElement('button');
-            saveBtn.classList.add("post_brand");
+            saveBtn.classList.add(".save_brand");
             saveBtn.innerHTML='Save';
             story.appendChild(saveBtn);
+
+            saveBtn.addEventListener('click', () => {
+                const newTitle = titleInput.value;
+                const newStory = storyInput.value; 
+                const updatedPost = {
+                    img: post.querySelector('.post_img').src,
+                    title: newTitle,
+                    story: newStory,
+                    brand: post.querySelector('.post_brand').innerHTML
+                }
+                // console.log(updatedPost.title)
+                // console.log(updatedPost.story)
+                // console.log(updatedPost.brand)
+                console.log(updatedPost)
+                updatePost(updatedPost);
+            })
         })
     })
+
+    async function updatePost(updatedPost){
+        fetch('/posts', {
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedPost)
+        })
+    }
 });
 

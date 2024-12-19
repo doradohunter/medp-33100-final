@@ -225,3 +225,11 @@ main {
     font-weight: 700;
     border: .2em solid #DAD9D9;
 }
+.save_brand{
+    border-radius: 1em;
+    padding: 0 .4em;
+    background-color: #F8F8F8;
+    color:#DAD9D9;
+    font-weight: 700;
+    border: .2em solid #DAD9D9;
+}

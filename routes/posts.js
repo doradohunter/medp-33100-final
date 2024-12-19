@@ -25,4 +25,18 @@ router.post('/', async function (req, res) {
     }
     res.send('Successful!')
 })
+
+router.put('/', async function (req, res) {
+    try {
+        const db = req.app.locals.db;
+        
+        await db.collection('Posts')
+            .updateOne(newPost);
+        
+    } catch (error) {
+        console.log(error);
+    }
+    res.send('Successful!')
+})
+
 module.exports = router;
