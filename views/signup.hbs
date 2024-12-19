@@ -1,0 +1,17 @@
+<body class="signup-page">
+  <div class="container">
+    <h1>Sign Up</h1>
+    {{#if error}}<p class="error">{{error}}</p>{{/if}}
+    
+    <form action="/users/signup" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/users/login">Log in here</a></p>
+  </div>
+</body>
