@@ -1,0 +1,215 @@
+main {
+  margin: auto;
+  align-items: center;
+  width: auto;
+  font-size: 22px;
+  font-family: 'Comfortaa', sans-serif;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 200px));
+  padding: 1rem;
+  margin-bottom: 2rem;
+  justify-content: space-evenly;
+  margin: 0;
+  gap: 3rem;
+  overflow: visible;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  align-items: center;
+  align-self: center;
+  margin: auto;
+}
+
+holder {
+  size: 0;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  transition: transform 0.2s ease
+}
+
+holder:hover {
+  transform: scale(1.01);
+}
+
+.fa-solid.fa-trash:hover {
+  opacity: 0.5;
+}
+
+.fa-solid.fa-pencil:hover {
+  opacity: 0.5;
+}
+
+.post {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+  padding: 20px;
+  height: fit-content;
+  align-items: center;
+  border-style: solid;
+  border-width: 2px;
+  background-color: white;
+  border-color: black;
+  z-index: 1;
+}
+
+textarea {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+#submit_button {
+  font-family: 'Comfortaa', sans-serif;
+  padding: 8px 8px;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+  border-width: 2px;
+  border: none;
+  border: solid;
+  border-color: black;
+  text-decoration: none;
+}
+
+button {
+  font-family: 'Comfortaa', sans-serif;
+  padding: 8px 8px;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+  border-width: 2px;
+  border: none;
+  border: solid;
+  border-color: black;
+  text-decoration: none;
+}
+
+button:hover {
+  opacity: 0.75;
+}
+
+#submit_button:hover {
+  opacity: 0.75;
+}
+
+#image_input {
+  font-family: 'Comfortaa', sans-serif;
+  padding: 8px 8px;
+  margin: auto;
+  background-color: white;
+  text-decoration: none;
+}
+
+intro {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  text-align: center;
+  align-content: center;
+  font-size: 36px;
+}
+
+#post_form {
+  color: black;
+  margin: auto;
+  width: 400px;
+  display: flex;
+  align-self: center;
+  gap: 10px;
+  bottom: 0;
+  right: 0;
+  flex-direction: column;
+  height: fit-content;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 4px;
+  padding: 10px;
+  background-color: white;
+  border-color: black;
+  z-index: 5;
+}
+
+
+buttonHolder {
+  margin: auto;
+  width: 400px;
+  display: flex;
+  align-self: center;
+  gap: 10px;
+  bottom: 0;
+  right: 0;
+  flex-direction: row;
+  height: fit-content;
+  padding: 10px;
+  z-index: 5;
+}
+
+img {
+  width: 100%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  min-width: 200px;
+  margin: auto !important;
+  display: block;
+}
+
+body {
+  background-image: url("../images/corkBoard.jpg");
+  background-size: 100vw;
+  font-family: 'Comfortaa', sans-serif;
+  overflow-x: auto;
+  overflow-y: auto;
+  overflow: visible;
+  user-select: none;
+}
+
+a:link {
+  color: lightgray;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: lightgray;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lightgray;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: lightgray;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+p {
+  color: black;
+  margin: auto;
+  padding-top: 10px;
+}
+
+icons {
+  color: black;
+  margin: auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: 70px;
+}

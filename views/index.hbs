@@ -1,0 +1,40 @@
+<form id="post_form">
+    <span class="dot"></span>
+    <h3>Add a new Memory</h3>
+    <textarea name="content" style="resize: none" placeholder="Input Message" rows="1"></textarea>
+    <input type="file" id="image_input" name="image" accept="image/*">
+    <input id="submit_button" type="submit" value="Create Memory">
+</form>
+
+<buttonHolder>
+    <button id="ascButton">Sort by oldest</button>
+    <button id="descButton">Sort by newest</button>
+</buttonHolder>
+
+<main>
+    {{#each posts}}
+    <div class="post" id="{{this._id}}">
+        <icons>
+            <i class="fa-solid fa-pencil" id="{{this._id}}"></i>
+            <span class="dot"></span>
+            <i class="fa-solid fa-trash" id="{{this._id}}"></i>
+        </icons>
+        <holder>
+            {{#if this.imageUrl}}
+            <img src="{{this.imageUrl}}" alt="Post image" />
+            {{/if}}
+            <p>{{this.content}}</p>
+        </holder>
+    </div>
+    {{/each}}
+</main>
+
+<intro>
+    <t1>This is a memory keeping website.</t1>
+    <br>
+    <br>
+    <t2>You can upload, edit, or remove memories, represented by polaroids.</t2>
+    <br>
+    <br>
+    <t3>Tap or press at any time to enter.</t3>
+</intro>
