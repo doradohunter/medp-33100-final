@@ -31,6 +31,33 @@ router.get('/', async function (req, res, next) {
   }
 });
 
+// POST route to add a new memory
+router.post('/add-memory', async function (req, res) {
+  try {
+    const db = req.app.locals.db;
+    const { title, author, date, description } = req.body;
+    const userId = req.cookies.userId;
+
+    if (!userId) {
+      return res.redirect('/users/login');
+    }
+
+    const newMemory = { title, author, date, description, userId };
+
+    const result = await db.collection('memory').insertOne(newMemory);
+
+    if (result.acknowledged) {
+      res.redirect('/');
+    } else {
+      res.status(400).send('Failed to add memory');
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('An error occurred');
+  }
+});
+
+// GET edit memory page
 router.get('/edit-memory/:id', async function (req, res) {
   try {
     const db = req.app.locals.db;
@@ -63,6 +90,7 @@ router.get('/edit-memory/:id', async function (req, res) {
   }
 });
 
+// POST route to update memory
 router.post('/edit-memory/:id', async function (req, res) {
   try {
     const db = req.app.locals.db;
@@ -87,6 +115,7 @@ router.post('/edit-memory/:id', async function (req, res) {
   }
 });
 
+// POST route to delete memory
 router.post('/delete-memory/:id', async function (req, res) {
   try {
     const db = req.app.locals.db;

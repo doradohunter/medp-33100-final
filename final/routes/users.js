@@ -20,9 +20,8 @@ router.post('/login', async function (req, res, next) {
       return res.render('login', { error: 'Invalid credentials' });
     }
 
-    // Set the userId in a cookie to keep the user logged in
     res.cookie('userId', user._id.toString(), { httpOnly: true, secure: false });
-    res.redirect('/'); // Redirect to home page after successful login
+    res.redirect('/'); 
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');
@@ -42,13 +41,11 @@ router.post('/signup', async function (req, res, next) {
       return res.render('signup', { error: 'Username and password are required' });
     }
 
-    // Check if the username already exists
     const existingUser = await db.collection('users').findOne({ username });
     if (existingUser) {
       return res.render('signup', { error: 'Username already exists' });
     }
 
-    // Save new user to the database
     const newUser = { username, password };
     const result = await db.collection('users').insertOne(newUser);
 
