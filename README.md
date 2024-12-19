@@ -35,3 +35,4 @@
 - Make it more visually themed.
 - Add more ways to interact, for example, editing, and adding images
 - Learn to create a proper login page to keep track of who logs in so that users can only edit their own posts.
+- Add stars intead of just the number rating for visual appeal
