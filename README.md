@@ -23,7 +23,7 @@
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://glitch.com/edit/#!/glamorous-wool-side?path=package.json%3A17%3A4
 
 ## **Credits**
 
