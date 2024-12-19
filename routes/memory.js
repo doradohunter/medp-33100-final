@@ -8,7 +8,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', async function (req, res) {
-  console.log(req.body);
   try {
     const db = req.app.locals.db;
     const newMemory = {
@@ -17,7 +16,9 @@ router.post('/', async function (req, res) {
       authorId: new ObjectId(req.body.authorId),
       day: req.body.day,
     };
+
     await db.collection('memories').insertOne(newMemory);
+    
     res.send('good!');
   } catch (error) {
     console.log(error);

@@ -64,27 +64,20 @@ function addEntry() {
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('add-entry');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       form.style.display = 'none';
-
-      e.preventDefault();
-
+      
       const formData = new FormData(form);
 
       const formDataObject = {
+        _id: formData.get('_id'),
         title: formData.get('title'),
         memory: formData.get('memory'),
         authorId: '67589ab2c23df25a12718523',
         day: formData.get('weekday'),
       };
 
-      fetch('/memory', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formDataObject),
-      });
+      await createMemory(formDataObject);
     });
   });
 }
@@ -117,9 +110,11 @@ function editDeleteMemory() {
       const inputDay = document.getElementById('edit-weekday');
       inputDay.value = memoryDay.textContent;
 
+
       saveButton.addEventListener('click', async (e) => {
         e.preventDefault();
         addEntry.style.display = 'none';
+
         const newTitle = inputTitle.value;
         const newMemory = inputText.value;
         const newDay = inputDay.value;
@@ -154,7 +149,7 @@ function displayEdits() {
   });
 }
 
-function displayMemory() {
+function displayDelete() {
   const pages = document.querySelectorAll('.page');
 
   pages.forEach((page) => {
@@ -163,6 +158,16 @@ function displayMemory() {
     deleteButton.addEventListener('click', () => {
       diary.removeChild(page);
     });
+  });
+}
+
+async function createMemory(createdMemory) {
+  fetch('/memory', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(createdMemory),
   });
 }
 
@@ -186,5 +191,5 @@ weekButtons();
 showForm();
 addEntry();
 editDeleteMemory();
-displayMemory();
+displayDelete();
 displayEdits();
