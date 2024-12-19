@@ -4,9 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const connectToDatabase = require('./config/db');
+const methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var introRouter = require('./routes/intro'); 
 
 var app = express();
 
@@ -23,21 +25,23 @@ connectToDatabase().then((client) => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use(methodOverride('_method')); 
 
-  // Use the routers
-  app.use('/', indexRouter);
-  app.use('/users', usersRouter);
+  app.use('/intro', introRouter);  
 
-  // Ensure users are logged in before accessing the homepage
   app.use(function (req, res, next) {
+    console.log(`Requested URL: ${req.originalUrl}`);
     const userId = req.cookies.userId;
 
-    // If not logged in and accessing non-login/signup pages, redirect to login
-    if (!userId && req.originalUrl !== '/users/login' && req.originalUrl !== '/users/signup') {
-      return res.redirect('/users/login');
+    if (!userId && req.originalUrl !== '/users/login' && req.originalUrl !== '/users/signup' && req.originalUrl !== '/intro') {
+      return res.redirect('/intro');
     }
+
     next();
   });
+
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
 
   // catch 404 and forward to error handler
   app.use(function(req, res, next) {

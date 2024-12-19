@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-// GET login page - Render login form
+// GET login page
 router.get('/login', function (req, res, next) {
   res.render('login');
 });
@@ -53,9 +53,8 @@ router.post('/signup', async function (req, res, next) {
     const result = await db.collection('users').insertOne(newUser);
 
     if (result.acknowledged) {
-      // Set the userId in a cookie to keep the user logged in
       res.cookie('userId', result.insertedId.toString(), { httpOnly: true, secure: false });
-      res.redirect('/'); // Redirect to the home page where they can view their posts
+      res.redirect('/'); 
     } else {
       res.render('signup', { error: 'Failed to create user' });
     }
@@ -65,10 +64,9 @@ router.post('/signup', async function (req, res, next) {
   }
 });
 
-// Sign out route - Clears the user's session and redirects to login
 router.get('/logout', function (req, res, next) {
-  res.clearCookie('userId'); // Clear the userId cookie
-  res.redirect('/users/login'); // Redirect to login page
+  res.clearCookie('userId'); 
+  res.redirect('/users/login');
 });
 
 module.exports = router;

@@ -76,12 +76,24 @@ p {
 }
 
 a {
-  color: #8b5c2b;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8b5c2b;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  text-align: center;
   text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 a:hover {
-  text-decoration: underline;
+  background-color: #7a4d26;
+  transform: translateY(-2px);
+}
+
+a:active {
+  transform: translateY(2px); 
 }
 
 .pencil-button {
@@ -167,3 +179,24 @@ h2 {
   font-size: 0.8rem;
   color: #8b5c2b;
 }
+
+/* Intro Page Styling */
+.intro-container {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.intro-container h1 {
+  font-size: 2.5rem;
+  color: #8b5c2b;
+  margin-bottom: 20px;
+}
+
+.intro-container p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
