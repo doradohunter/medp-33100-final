@@ -2,32 +2,41 @@
 
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- This is a memory keeper app which displays memories as pinned polaroids on a corkboard.
+- Users can view memories, move them around, edit them, delete them, or make new ones.
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Aron Ashurov
 
 ## **Features**
 
-- List the key features of the project (the three distinct types of user interactions).
+- Users can drag and move around memories across the entire area.
+- Users can create a new memory by providing an image and text.
+- Users can edit memory text.
+- Users can delete memories.
+- Users can sort memories by oldest or newest.
 
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
-    - Libraries
-    - Other
+    - GSAP (for animations)
+    - Interact.js (to allow for drag and drop)
+    - Font Awesome (for icons)
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://inky-foremost-veterinarian.glitch.me
 
 ## **Credits**
 
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
+- Google Fonts (for the custom font used)
+- Adobe Stock Images.
+- Google Images (for other images).
 
 ## **Future Enhancements**
 
-- List any future enhancements you would like to make or improve given more time.
+- Allow for more random and natural memory placement.
+- Make the surface able to based on mouse movement.
+- Generally better visuals.
+- More animation flourishes.
