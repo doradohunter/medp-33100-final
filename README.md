@@ -23,7 +23,7 @@
  
 ## **Live Demo**
 
-- Include a link to the live version of the project hosted on Glitch.
+- https://knotty-time-chalk.glitch.me/
 
 ## **Credits**
 
