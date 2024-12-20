@@ -28,6 +28,10 @@ body {
   align-items: center; 
   max-width: auto;
   flex-wrap: wrap;
+  background: #75c8ff25;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* img{

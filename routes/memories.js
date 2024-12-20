@@ -5,7 +5,7 @@ const uploadToCloudinary = require("../config/uploadToCloudinary");
 const multer = require("multer");
 
 /* GET users listing. */
-router.get("/", async function (req, res, next) {
+router.get("/", async function (req, res) {
   //   res.send('respond with a resource');
   try {
     const db = req.app.locals.db;
@@ -86,8 +86,6 @@ router.post('/', multer().single('image'), uploadToCloudinary, async function (r
   }
 }
 );
-
-//post comments section
 
 //edit
 router.put("/", async function (req, res) {

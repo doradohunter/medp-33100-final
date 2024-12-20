@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         memoriesContainer.appendChild(memoryElement);
       });
     }
+    
 
     async function updateMemory(updatedMemory) {
       fetch("/memories", {
