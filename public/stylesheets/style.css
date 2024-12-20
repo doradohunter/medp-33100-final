@@ -68,7 +68,7 @@ body {
 .memories_container .card:hover{
   box-shadow: 5px 10px 10px 5px rgba(255, 255, 255, 0.348);
   background: rgba(17, 63, 202, 0.559);
-  /*transform: scale(5); */
+  transform: scale(2);
 }
 
 .description {

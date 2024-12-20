@@ -10,12 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="content">
             <div class="memory" id="${memory._id}">
               <h3 class="title">${memory.title}</h3>
-              <h4 class="date">${memory.date}</h4>
+              <img class="image" src="${memory.imageUrl}" alt="post image">
               <h5 class="emotion">${memory.emotion}</h5>
               <p class="description">${memory.description}</p>
-              <img class="image" src="${memory.imageUrl}" alt="post image">
-              <a href="#">Read More</a>
               <p class="author">By: ${memory.author}</p>
+              <h4 class="date">${memory.date}</h4>
               <button class="edit_button">Edit</button>
               <button class="delete_button">Delete</button>
             </div>
@@ -87,8 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       saveButton.addEventListener("click", async () => {
 
-        const formattedDate = `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`;
-
         const originalDate = memory.querySelector(".date").innerText;
         // const editedDateText = `${originalDate} (Edited)`;
 
@@ -96,8 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!originalDate.includes("(Edited)")) {
           editedDateText = `${originalDate} (Edited)`;
         }
-
-       
 
         const updatedMemory = {
           memoryID: memory.id,
@@ -124,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //revert all the elements back
         title.innerHTML = "";
-        const updatedTitleEl = document.createElement("h1");
+        const updatedTitleEl = document.createElement("h4");
         updatedTitleEl.innerText = titleInput.value;
         title.appendChild(updatedTitleEl);
 
