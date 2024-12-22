@@ -23,6 +23,7 @@
 ## **Technologies Used**
 
 - List of technologies and tools used in the project:
+    - [Figma](https://www.figma.com/design/bbmSmSHDFp9uXzHssmW2Ey/MEDP331?node-id=184-2&p=f&t=Sfe7KXz0Vb09m848-0) and [Google Slides](https://docs.google.com/presentation/d/1rpGtvjdqdR2G92c4zEz60Dg9Qz19rctljeLmW-zXKTk/edit#slide=id.g1199fbe94db_0_356)
     - Node Express Server
     - MongoDB
     - Cloudinary
