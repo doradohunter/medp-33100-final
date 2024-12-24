@@ -11,17 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         Page.style.display = 'block';
     })
     //form appears and disappears
-    create = document.querySelector('.create');
+    create = document.querySelector('.createModal');
     create.style.display = 'none';
     newPost = document.querySelector('.create_post');
     newPost.addEventListener('click', () => {
         newPost.style.display = 'none';
         create.style.display = 'block';
+        Page.style.display = 'none';
     })
 
     SubmitNewPost = document.querySelector('.createPost');
     SubmitNewPost.addEventListener('click', () =>{
         newPost.style.display = 'block';
+        Page.style.display = 'none';
         create.style.display = 'none';
     })
     //Form submission
